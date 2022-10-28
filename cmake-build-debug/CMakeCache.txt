@@ -233,6 +233,12 @@ CMAKE_STRIP:FILEPATH=C:/Users/pland/AppData/Local/JetBrains/Toolbox/apps/CLion/c
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Dot tool for use with Doxygen
+DOXYGEN_DOT_EXECUTABLE:FILEPATH=DOXYGEN_DOT_EXECUTABLE-NOTFOUND
+
+//Doxygen documentation generation tool (http://www.doxygen.org)
+DOXYGEN_EXECUTABLE:FILEPATH=C:/mingw64/bin/doxygen.exe
+
 //Value Computed by CMake
 aed_projeto_BINARY_DIR:STATIC=C:/Users/pland/OneDrive/Desktop/FEUP/2Ano/AED/Projeto/aed_projeto/cmake-build-debug
 
@@ -399,4 +405,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: DOXYGEN_DOT_EXECUTABLE
+DOXYGEN_DOT_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: DOXYGEN_EXECUTABLE
+DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
+//Details about finding Doxygen
+FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[C:/mingw64/bin/doxygen.exe][cfound components: doxygen missing components: dot][v1.9.3()]
 

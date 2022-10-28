@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "aed_projeto",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -38,8 +40,15 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "Doxygen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Doxygen-Debug-6154b212296bb2792a0d.json",
+					"name" : "Doxygen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "aed_projeto::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-aed_projeto-Debug-d16ec643bf5e587d916a.json",
+					"jsonFile" : "target-aed_projeto-Debug-5b4999bb250d7dc07048.json",
 					"name" : "aed_projeto",
 					"projectIndex" : 0
 				}

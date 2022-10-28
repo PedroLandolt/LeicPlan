@@ -1,4 +1,5 @@
 C:\Users\pland\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/pland/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/ninja/win/ninja.exe -G Ninja -S C:\Users\pland\OneDrive\Desktop\FEUP\2Ano\AED\Projeto\aed_projeto -B C:\Users\pland\OneDrive\Desktop\FEUP\2Ano\AED\Projeto\aed_projeto\cmake-build-debug
+Doxygen build started
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/pland/OneDrive/Desktop/FEUP/2Ano/AED/Projeto/aed_projeto/cmake-build-debug
