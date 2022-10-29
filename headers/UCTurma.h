@@ -8,7 +8,24 @@
 
 class UCTurma {
 
+public:
+
+    UCTurma(pair<string, string> ucturma);
+
+    auto getUCTurma(){
+        return ucturma;
+    }
+
+    void setUCTurma(pair<string, string> ucturma){
+        this->ucturma = ucturma;
+    }
+
+private:
+
+    pair<string,string> ucturma; //codUC, codTurma
+
 };
+
 
 
 #endif //AED_PROJETO_UCTURMA_H

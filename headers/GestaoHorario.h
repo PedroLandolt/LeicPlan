@@ -6,10 +6,19 @@
 #define AED_PROJETO_GESTAOHORARIO_H
 
 
+#include <string>
+#include <vector>
+#include <iostream>
+#include <utility>
+#include <iterator>
+
+using namespace std;
+
 class GestaoHorario {
 
 public:
-    void lerFichEst();
+
+    auto lerFichEst(string nomeFich);
 
     void pedidos();
 
