@@ -18,11 +18,11 @@ class Estudante {
 
         Estudante(pair<int, string> estudante, list<UCTurma> inscrito);
 
-        auto getEstudante(){ return estudante, inscrito; }
+        auto getEstudante();
 
-        auto getEstudantePair(){ return estudante; }
+        auto getEstudantePair();
 
-        auto getEstudanteInscrito(){ return inscrito; }
+        auto getEstudanteInscrito();
 
 
         void setEstudante(pair<int, string> estudante, list<UCTurma> inscrito);

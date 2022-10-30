@@ -24,4 +24,4 @@ else(DOXYGEN_FOUND)
     message("Doxygen needs to be installed to generate the documentation.")
 endif(DOXYGEN_FOUND)
 
-add_executable(aed_projeto main.cpp cpps/GestaoHorario.cpp headers/GestaoHorario.h cpps/Estudante.cpp headers/Estudante.h cpps/THorario.cpp headers/THorario.h cpps/Pedido.cpp headers/Pedido.h cpps/UCTurma.cpp headers/UCTurma.h cpps/Slot.cpp headers/Slot.h)
+add_executable(aed_projeto main.cpp cpps/GestaoHorario.cpp headers/GestaoHorario.h cpps/Estudante.cpp headers/Estudante.h cpps/THorario.cpp headers/THorario.h cpps/Pedido.cpp headers/Pedido.h cpps/UCTurma.cpp headers/UCTurma.h cpps/Slot.cpp headers/Slot.h cpps/Sort.cpp headers/Sort.h)

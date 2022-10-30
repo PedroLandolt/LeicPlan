@@ -28,8 +28,9 @@ public:
 
     void listagem();
 
-    void getEstudante();
+    auto getEstudante();
 
+    
 private:
 
 

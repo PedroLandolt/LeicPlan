@@ -83,6 +83,8 @@ void GestaoHorario::listagem() {
 
 }
 
-void GestaoHorario::getEstudante(){
-
+auto GestaoHorario::getEstudante(){
+    Estudante est;
+    return est.getEstudante();
 };
+

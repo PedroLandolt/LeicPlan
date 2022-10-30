@@ -12,13 +12,9 @@ public:
 
     UCTurma(pair<string, string> ucturma);
 
-    auto getUCTurma(){
-        return ucturma;
-    }
+    auto getUCTurma();
 
-    void setUCTurma(pair<string, string> ucturma){
-        this->ucturma = ucturma;
-    }
+    void setUCTurma(pair<string, string> ucturma);
 
 private:
 
