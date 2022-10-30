@@ -47,12 +47,12 @@ int main() {
 
     int choice;
 
-    string uc_caso2 , uc_caso4, uc_caso8;
-    string turma_caso3, turma_caso4, turma_caso7, turma_caso9;
-    string nome_estudante_caso6;
-    int id_estudante_caso6;
-    pair<string,string> uc_turma_caso4;
-    pair<int,string> estudante_caso6;
+    string uc_caso2 , uc_caso4, uc_caso8, uc_caso10;
+    string turma_caso3, turma_caso4, turma_caso7, turma_caso9, turma_caso10;
+    string nome_estudante_caso6, nome_estudante_caso10;
+    int id_estudante_caso6, id_estudante_caso10;
+    pair<string,string> uc_turma_caso4, uc_turma_caso10;
+    pair<int,string> estudante_caso6, estudante_caso10;
 
     do{
         cout << endl;
@@ -708,19 +708,107 @@ int main() {
             //Fazer pedido de mudanca de turma
             case 10:
                 choice = 10;
+
+                cout << " Introduza o seu UP: ";
+                cin >> id_estudante_caso10;
+
+                cout << " Introduza o seu nome: ";
+                cin >> nome_estudante_caso10;
+
+                estudante_caso10 = make_pair(id_estudante_caso10, nome_estudante_caso10);
+
+                //confirmar se o estudante existe
+
+                //confirmado
+
+                /////////////////////////////////////////////
+
+                cout << " Introduza o nome da UC para qual quer mudar: ";
+                cin >> uc_caso10;
+                
+                cout << " Introduza o nome da turma para qual quer mudar: ";
+                cin >> turma_caso10;
+
+                uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
+
+                //confirmar disponibilidade da turma
+
+                //confirmado
+                
+                /////////////////////////////////////////////
+
+                //confirmar se o estudante não tem sobreposicao de horarios
+
+                //confirmado
+
+                /////////////////////////////////////////////
+
+                //acrescentar a queue de pedidos de mudanca de turma
+
                 break;
 
             //Listar pedidos de mudanca de turma
             case 11:
                 choice = 11;
+                
+                //cout pedidos de mudanca de turma
+
                 break;
 
-            //Processar pedidos de mudanca de turma
+            //Processar pedidos de mudanca de turma "FIFO"
             case 12:
                 choice = 12;
+                int choice12;
+
+                do{
+                    
+                    //cout primeiro pedido de mudanca de turma
+
+                    cout << " 0 - Back" << endl;
+                    cout << " 1 - Aceitar pedido" << endl;
+                    cout << " 2 - Rejeitar pedido" << endl;
+                    cout << endl;
+
+                    cin >> choice12;
+
+                    switch(choice12){
+                        case 0:
+                            choice12 = 0;
+                            /**
+                            * Deve voltar ao menu principal
+                            */
+                            break;
+
+                        case 1:
+                            choice12 = 1;
+
+                            /**
+                             * Aceita pedido e remove da queue 
+                             * Mudar uc e turma do estudante
+                             *
+                             * @brief Processar pedidos
+                            */
+
+                            break;
+                        
+                        case 2:
+                            choice12 = 2;
+
+                            /**
+                             * Rejeita pedido e remove da queue
+                             *
+                             * @brief Processar pedidos
+                            */
+
+                            break;
+
+                        default:
+                            cout << " Opcao invalida" << endl;
+                            break;
+                    }
+                    
+                } while (choice12 != 0);
                 break;
-            
-            
 
             default:
                 cout << " Opcao invalida" << endl;
