@@ -5,17 +5,12 @@
 
 //include functions
 
-#include <fstream>
-#include <sstream>
-#include <set>
 
 //include headers
 
 #include "../headers/Estudante.h"
 
 //include cpps
-
-#include "UCTurma.cpp"
 
 
 /**
@@ -26,6 +21,9 @@
 
 
 //constructor
+
+Estudante::Estudante() {}
+
 Estudante::Estudante(pair<int, string> estudante, list<UCTurma> inscrito) {
     this->estudante = estudante;
     this->inscrito = inscrito;
@@ -45,7 +43,7 @@ void Estudante::setEstudantePair(pair<int, string> estudante){
     this->estudante = estudante;
 };
 
-auto Estudante::getEstudantePair(){
+pair<int,string> Estudante::getEstudantePair(){
     return estudante;
 }
 

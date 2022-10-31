@@ -6,23 +6,19 @@
 #define AED_PROJETO_GESTAOHORARIO_H
 
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <utility>
-#include <iterator>
+#include "Pedido.h"
 
-using namespace std;
 
 class GestaoHorario {
 
 public:
 
-    auto lerFichEst(string nomeFich);
+    static void lerFichEst(vector<Estudante> estudantes);
 
-    void pedidos();
+    queue<Pedido> getPedidos();
 
-    void guardar();
+    void guardar(Pedido pedido);
+
 
     void processsar();
 
@@ -32,6 +28,10 @@ public:
 
     
 private:
+
+    vector<Estudante> estudantes;
+    queue<Pedido> pedidos;
+
 
 
 };

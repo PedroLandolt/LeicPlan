@@ -1,9 +1,20 @@
 # ninja log v5
-1	343	6888377391431194	build.ninja	b9a2dcde345f0a64
-18	356	6886739352446919	CMakeFiles/aed_projeto.dir/cpps/UCTurma.cpp.obj	c31a402ceb7aea03
-9	370	6886739352576908	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
-0	767	6886739356576776	CMakeFiles/aed_projeto.dir/main.cpp.obj	cafe526b21ef3d12
-28	372	6886739352606929	CMakeFiles/aed_projeto.dir/cpps/Estudante.cpp.obj	b1ff63dac8267b23
-37	388	6886739352776941	CMakeFiles/aed_projeto.dir/cpps/Pedido.cpp.obj	527374983669a2af
+2	357	6889401579302340	build.ninja	b9a2dcde345f0a64
+22	1195	6889390178826173	CMakeFiles/aed_projeto.dir/cpps/UCTurma.cpp.obj	c31a402ceb7aea03
+5	1046	6889391635590853	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+4	955	6889401042187116	CMakeFiles/aed_projeto.dir/main.cpp.obj	cafe526b21ef3d12
+27	1333	6889390180297255	CMakeFiles/aed_projeto.dir/cpps/Estudante.cpp.obj	b1ff63dac8267b23
+17	1327	6889390180211905	CMakeFiles/aed_projeto.dir/cpps/Pedido.cpp.obj	527374983669a2af
 47	394	6886739352836900	CMakeFiles/aed_projeto.dir/cpps/THorario.cpp.obj	ec8d9cf17b9fa018
-58	397	6886739352856919	CMakeFiles/aed_projeto.dir/cpps/Slot.cpp.obj	79dd53731a0ed101
+73	476	6889331208046525	CMakeFiles/aed_projeto.dir/cpps/Slot.cpp.obj	79dd53731a0ed101
+33	1661	6889390183568222	CMakeFiles/aed_projeto.dir/cpps/Sort.cpp.obj	f623ba8af4590da
+23	1461	6889422253885009	CMakeFiles/aed_projeto.dir/cpps/UCTurma.cpp.obj	c31a402ceb7aea03
+7	1467	6889422253947152	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+15	1569	6889422254974150	CMakeFiles/aed_projeto.dir/main.cpp.obj	cafe526b21ef3d12
+41	1384	6889423957493492	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+57	1435	6889423958007254	CMakeFiles/aed_projeto.dir/cpps/UCTurma.cpp.obj	c31a402ceb7aea03
+26	1445	6889425920373291	CMakeFiles/aed_projeto.dir/cpps/UCTurma.cpp.obj	c31a402ceb7aea03
+19	1685	6889425922773659	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+6	1266	6889429359724703	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+5	1251	6889435494290830	CMakeFiles/aed_projeto.dir/cpps/GestaoHorario.cpp.obj	3829a205933b45c8
+35	1453	6889435496292765	CMakeFiles/aed_projeto.dir/main.cpp.obj	cafe526b21ef3d12

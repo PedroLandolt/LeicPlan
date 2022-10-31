@@ -5,22 +5,20 @@
 #ifndef AED_PROJETO_ESTUDANTE_H
 #define AED_PROJETO_ESTUDANTE_H
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <utility>
-#include <list>
 
-using namespace std;
+
+#include "UCTurma.h"
 
 class Estudante {
     public:
+
+        Estudante();
 
         Estudante(pair<int, string> estudante, list<UCTurma> inscrito);
 
         auto getEstudante();
 
-        auto getEstudantePair();
+        pair<int,string> getEstudantePair();
 
         auto getEstudanteInscrito();
 

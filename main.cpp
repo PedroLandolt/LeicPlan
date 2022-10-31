@@ -1,10 +1,4 @@
-#include <iostream>
-
-
-
 #include "cpps/GestaoHorario.cpp"
-#include "cpps/Sort.cpp"
-
 
 int main() {
     
@@ -12,21 +6,25 @@ int main() {
     
 
     GestaoHorario gh;
+    Sort sorts;
 
     cout << " A ler o ficheiro students_classes.csv..." << endl;
 
     //Leitura dos ficheiros
-    auto estudantes = gh.lerFichEst("students_classes"); //retorna um set de estudantes
+    vector<Estudante> v_estudantes;
+    gh.lerFichEst(v_estudantes); //retorna um set de estudantes
+
+    //set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
 
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes.csv..." << endl;
 
-    auto uc_turmas = gh.lerFichEst("classes");
+    //auto uc_turmas = gh.lerFichEst("classes");
 
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes_per_uc.csv..." << endl;
 
-    auto horarios = gh.lerFichEst("classes_per_uc");
+    //auto horarios = gh.lerFichEst("classes_per_uc");
 
     cout << " Ficheiro lido com sucesso!" << endl;
 
@@ -35,10 +33,9 @@ int main() {
 
 
     //Pedidos de mudança de turma
-    gh.pedidos();
-    gh.guardar();
-    gh.processsar();
-    gh.listagem();
+    //gh.getPedidos();
+    //gh.processsar();
+    //gh.listagem();
 
 
     //menu
@@ -52,7 +49,9 @@ int main() {
     string nome_estudante_caso6, nome_estudante_caso10;
     int id_estudante_caso6, id_estudante_caso10;
     pair<string,string> uc_turma_caso4, uc_turma_caso10;
-    pair<int,string> estudante_caso6, estudante_caso10;
+    pair<int,string> estudante_caso6, estudante_caso10, estudante_caso1;
+
+    
 
     do{
         cout << endl;
@@ -73,7 +72,7 @@ int main() {
 
         cin >> choice;
 
-        int choice1;
+
 
         switch(choice){
             case 0:
@@ -111,7 +110,14 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por UP de forma crescente
                              */
-                            
+
+                            sorts.sortUPCrescente(v_estudantes);
+
+                            for(auto p : v_estudantes){
+                                cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
+                            }
+
+                            cout << endl;
                             break;
 
                         case 2:
@@ -119,6 +125,15 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por UP de forma decrescente
                              */
+                            
+                            sorts.sortUPDecrescente(v_estudantes);
+                            
+                            for(auto p : v_estudantes){
+                                cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
+                            }
+
+                            cout << endl;
+
                             break;
 
                         case 3:
@@ -127,6 +142,14 @@ int main() {
                              * @return lista ordenada estudantes por nome de forma A-Z
                              */
                             
+                            sorts.sortNomeCrescente(v_estudantes);
+
+                            for(auto p : v_estudantes){
+                                cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
+                            }
+
+                            cout << endl;
+
                             break;
                         
                         case 4:
@@ -134,6 +157,12 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por nome de forma Z-A
                              */
+
+                            sorts.sortNomeDecrescente(v_estudantes);
+
+                            for(auto p : v_estudantes){
+                                cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
+                            }
                             
                             break;
 
@@ -709,6 +738,8 @@ int main() {
             case 10:
                 choice = 10;
 
+                /*
+                
                 cout << " Introduza o seu UP: ";
                 cin >> id_estudante_caso10;
 
@@ -731,22 +762,26 @@ int main() {
 
                 uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
 
-                //confirmar disponibilidade da turma
+                UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
+
+                Estudante estudante_caso10_tmp(estudante_caso10, estudante_caso10.getEstudante().getEstudanteInscrito());
+
+                //confirmar se a turma existe
 
                 //confirmado
                 
                 /////////////////////////////////////////////
 
-                //confirmar se o estudante não tem sobreposicao de horarios
+                Pedido pedido_caso10(estudante_caso10_tmp.getEstudante(), uc_turma_caso10);
+                
+                gh.guardar(pedido_caso10);
 
-                //confirmado
-
-                /////////////////////////////////////////////
-
-                //acrescentar a queue de pedidos de mudanca de turma
+                cout << endl;    
+                cout << "O seu pedido foi guardado na lista de espera!" << endl;
+                cout << endl;
 
                 break;
-
+                */
             //Listar pedidos de mudanca de turma
             case 11:
                 choice = 11;
@@ -764,9 +799,9 @@ int main() {
                     
                     //cout primeiro pedido de mudanca de turma
 
+                    cout << endl;
                     cout << " 0 - Back" << endl;
-                    cout << " 1 - Aceitar pedido" << endl;
-                    cout << " 2 - Rejeitar pedido" << endl;
+                    cout << " 1 - Processar Pedido" << endl;
                     cout << endl;
 
                     cin >> choice12;
@@ -785,17 +820,6 @@ int main() {
                             /**
                              * Aceita pedido e remove da queue 
                              * Mudar uc e turma do estudante
-                             *
-                             * @brief Processar pedidos
-                            */
-
-                            break;
-                        
-                        case 2:
-                            choice12 = 2;
-
-                            /**
-                             * Rejeita pedido e remove da queue
                              *
                              * @brief Processar pedidos
                             */

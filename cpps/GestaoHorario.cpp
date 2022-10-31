@@ -3,17 +3,13 @@
 //
 
 //include functions
-#include <iostream>
+
 
 //include headers
 
 #include "../headers/GestaoHorario.h"
 
 //include cpps
-
-#include "THorario.cpp"
-#include "Estudante.cpp"
-#include "Pedido.cpp"
 
 
 
@@ -23,20 +19,22 @@
  *                  um queue <Pedido> pedidos; para dar queue aos pedidos de mudança de turma
  */
 
-auto GestaoHorario::lerFichEst(string nomeFich) {
+
+
+void GestaoHorario::lerFichEst(vector<Estudante> estudantes/*string nomeFich*/) {
     
-    if(nomeFich == "students_classes"){
+   //if(nomeFich == "students_classes"){
         ifstream file;
-        file.open(string("../data/" + nomeFich + ".csv").c_str());
+        //file.open(string("../data/" + nomeFich + ".csv").c_str());
+        file.open("../data/students_classes.csv");
         string line;
-        set<Estudante> estudantes;
         while (getline(file, line)) {
             stringstream ss(line);
             string idEstudante, nomeEstudante, UC, Turma;
             list<UCTurma> inscrito;
             getline(ss, idEstudante, ',');
             getline(ss, nomeEstudante, ',');
-            while(getline(ss, idEstudante, ',') && getline(ss, nomeEstudante, ',')){
+            while(getline(ss, idEstudante, ',')){
                 getline(ss, UC, ',');
                 getline(ss, Turma, ',');
                 pair<string, string> ucturma = make_pair(UC, Turma);
@@ -45,33 +43,33 @@ auto GestaoHorario::lerFichEst(string nomeFich) {
             }
             pair<int, string> estudante = make_pair(stoi(idEstudante), nomeEstudante);
             Estudante estudante1(estudante, inscrito);
-            estudantes.insert(estudante1);
+            estudantes.push_back(estudante1);
         }
         file.close();
 
-        
+    }
+/*else if(nomeFich == "classes"){
+    ifstream file;
+    file.open(string("../data/" + nomeFich + ".csv").c_str());
+    string line;
+}
+else if(nomeFich == "classes_per_uc"){
+    ifstream file;
+    file.open(string("../data/" + nomeFich + ".csv").c_str());
+    string line;
+}
+*/
+   // return estudantes;
+    
 
-        return estudantes;
-    }
-    else if(nomeFich == "classes"){
-        ifstream file;
-        file.open(string("../data/" + nomeFich + ".csv").c_str());
-        string line;
-    }
-    else if(nomeFich == "classes_per_uc"){
-        ifstream file;
-        file.open(string("../data/" + nomeFich + ".csv").c_str());
-        string line;
-    }
-    
-    
+/*
+queue<Pedido> GestaoHorario::getPedidos() {
+    return pedidos;
 }
 
-void GestaoHorario::pedidos() {
-
-}
-
-void GestaoHorario::guardar() {
+void GestaoHorario::guardar(Pedido pedido) {
+    
+    pedidos.push(pedido);
 
 }
 
@@ -82,7 +80,7 @@ void GestaoHorario::processsar() {
 void GestaoHorario::listagem() {
 
 }
-
+*/
 //auto GestaoHorario::getEstudante(){
 //    return estudante;
 

@@ -5,26 +5,23 @@
 #ifndef AED_PROJETO_SORT_H
 #define AED_PROJETO_SORT_H
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <utility>
-#include <iterator>
 
-#include "../cpps/Estudante.cpp"
+#include "Estudante.h"
 
 
 class Sort {
 
     public:
 
-        set<Estudante> sortSetIdCrescente(set<Estudante> &estudantes);
+        vector<pair<int,string>> sortUPCrescente(vector<Estudante> &estudantes);
 
-        int sortSetIdDecrescente(set<Estudante> &estudantes);
+        vector<pair<int,string>> sortUPDecrescente(vector<Estudante> &estudantes);
 
-        int sortSetNomeCrescente(set<Estudante> &estudantes);
+        vector<pair<int,string>> sortNomeCrescente(vector<Estudante> &estudantes);
 
-        int sortSetNomeDecrescente(set<Estudante> &estudantes);
+        vector<pair<int,string>> sortNomeDecrescente(vector<Estudante> &estudantes);
+
+       //bool sortbysec(const pair<int,int> &a, const pair<int,int> &b);
 
     private:
 
