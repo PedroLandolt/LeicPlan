@@ -20,7 +20,7 @@ class Estudante {
 
         pair<int,string> getEstudantePair();
 
-        auto getEstudanteInscrito();
+        list<UCTurma>& getEstudanteInscrito();
 
 
         void setEstudante(pair<int, string> estudante, list<UCTurma> inscrito);

@@ -14,6 +14,17 @@ int main() {
     vector<Estudante> v_estudantes;
     gh.lerFichEst(v_estudantes); //retorna um set de estudantes
 
+
+    for(auto i : v_estudantes){
+        cout << i.getEstudantePair().first << " " << i.getEstudantePair().second << endl;
+        for(auto j : i.getEstudanteInscrito()){
+            cout << j.getUCTurma().first << " " << j.getUCTurma().second << endl;
+        }
+        cout << endl;
+        cout << "||||||||||||||||||||||||||||||||" << endl;
+        cout << endl;
+    }
+
     //set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
 
     cout << " Ficheiro lido com sucesso!" << endl;

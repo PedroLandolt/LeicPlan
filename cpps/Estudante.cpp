@@ -47,7 +47,7 @@ pair<int,string> Estudante::getEstudantePair(){
     return estudante;
 }
 
-auto Estudante::getEstudanteInscrito(){
+list<UCTurma>& Estudante::getEstudanteInscrito(){
     return inscrito;
 }
 

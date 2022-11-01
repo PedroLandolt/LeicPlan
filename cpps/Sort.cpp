@@ -30,7 +30,7 @@ vector<pair<int,string>> Sort::sortNomeCrescente(vector<Estudante> &estudantes) 
         pair<int,string> estudante = it -> getEstudantePair();
         estudantes1.push_back(estudante);
     }
-    sort(estudantes1.begin(), estudantes1.end(), [](const std::pair<int,string> &left, const std::pair<int,string> &right) {
+    sort(estudantes1.begin(), estudantes1.end(), [](const pair<int,string> &left, const pair<int,string> &right) {
         return left.second < right.second;
     });
     return estudantes1;
@@ -42,7 +42,7 @@ vector<pair<int,string>> Sort::sortNomeDecrescente(vector<Estudante> &estudantes
         pair<int,string> estudante = it -> getEstudantePair();
         estudantes1.push_back(estudante);
     }
-    sort(estudantes1.begin(), estudantes1.end(), [](const std::pair<int,string> &left, const std::pair<int,string> &right) {
+    sort(estudantes1.begin(), estudantes1.end(), [](const pair<int,string> &left, const pair<int,string> &right) {
         return left.second < right.second;
     });
     reverse(estudantes1.begin(), estudantes1.end());

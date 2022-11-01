@@ -13,7 +13,7 @@ class GestaoHorario {
 
 public:
 
-    void lerFichEst(vector<Estudante> estudantes);
+    void lerFichEst(vector<Estudante> &estudantes);
 
     queue<Pedido> getPedidos();
 
