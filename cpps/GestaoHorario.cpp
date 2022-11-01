@@ -64,51 +64,6 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes/*string nomeFich*/)
     estudantes.erase(estudantes.begin());
 
     file.close();
-
-    /*
-     *
-     * mario
-    ifstream file;
-    file.open("../data/students_classes.csv");
-    string line;
-
-    getline(file, line); //para ignorar a primeira linha
-
-    while (getline(file, line)) { // lê uma linha do ficheiro para line
-        stringstream ss(line);    // cria um stringstream para a linha
-        string idEstudante, nomeEstudante, uc, turma;
-        list<UCTurma> inscrito;
-        getline(ss, idEstudante, ',');    // lê conteúdo do stream até à ',' e guarda em idEstudante
-        getline(ss, nomeEstudante, ',');  // lê conteúdo do stream até à ',' e guarda em nomeEstudante
-        getline(ss, uc, ',');             // lê conteúdo do stream até à ',' e guarda em uc
-        getline(ss, turma, ',');          // lê conteúdo do stream até à ',' e guarda em turma
-        cout << idEstudante << "|" << nomeEstudante << "|" << uc << "|" << turma << endl;
-    }
-    */
-
-    /*
-    ifstream file;
-    file.open("../data/students_classes.csv");
-    string line;
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string idEstudante, nomeEstudante, uc, turma;
-        list<UCTurma> inscrito;
-        getline(ss, idEstudante, ',');
-        getline(ss, nomeEstudante, ',');
-        while(getline(ss, idEstudante, ',')){
-            getline(ss, uc, ',');
-            getline(ss, turma, ',');
-            pair<string, string> ucturma = make_pair(uc, turma);
-            UCTurma ucturma1(ucturma);
-            inscrito.push_back(ucturma1);
-        }
-        pair<int, string> estudante = make_pair(stoi(idEstudante), nomeEstudante);
-        Estudante estudante1(estudante, inscrito);
-        estudantes.push_back(estudante1);
-    }
-    file.close();
-*/
 }
 /*else if(nomeFich == "classes"){
     ifstream file;

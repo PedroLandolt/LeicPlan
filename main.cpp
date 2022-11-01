@@ -14,7 +14,7 @@ int main() {
     vector<Estudante> v_estudantes;
     gh.lerFichEst(v_estudantes); //retorna um set de estudantes
 
-
+/* dar print ao vector de estudantes!
     for(auto i : v_estudantes){
         cout << i.getEstudantePair().first << " " << i.getEstudantePair().second << endl;
         for(auto j : i.getEstudanteInscrito()){
@@ -24,9 +24,17 @@ int main() {
         cout << "||||||||||||||||||||||||||||||||" << endl;
         cout << endl;
     }
+*/
 
-    //set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
+    set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
 
+/*
+    set<Estudante> s_estudantes = sorts.sortUPCrescente(v_estudantes);
+
+    for(auto i : v_estudantes){
+        s_estudantes.insert(i);
+    }
+*/
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes.csv..." << endl;
 
@@ -61,6 +69,7 @@ int main() {
     int id_estudante_caso6, id_estudante_caso10;
     pair<string,string> uc_turma_caso4, uc_turma_caso10;
     pair<int,string> estudante_caso6, estudante_caso10, estudante_caso1;
+    vector<pair<int,string>> v_estudante_caso2;
 
     
 
@@ -82,6 +91,7 @@ int main() {
         cout << endl;
 
         cin >> choice;
+        cout << endl;
 
 
 
@@ -107,6 +117,7 @@ int main() {
                     cout << endl;
 
                     cin >> choice1;
+                    cout << endl;
 
                     switch(choice1){
                         case 0:
@@ -202,6 +213,17 @@ int main() {
                     cout << endl;
                     cout << " UC escolhida: " << uc_caso2 << endl;
                     cout << endl;
+
+                    for(auto p : v_estudantes){
+                        auto j = p.getEstudanteInscrito();
+                        for(auto i : j){
+                            if(i.getUCTurma().first == uc_caso2){
+                                v_estudante_caso2.push_back(p.getEstudantePair());
+                            }
+                        }
+                    }
+
+                    cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
                     cout << " 2 - Ordenar estudantes por UP decrescente" << endl;
@@ -211,6 +233,7 @@ int main() {
                     cout << endl;
 
                     cin >> choice2;
+                    cout << endl;
 
                     switch(choice2){
                         case 0:
@@ -225,6 +248,15 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por UP de forma crescente
                              */
+
+                            sorts.sortPairCrescente(v_estudante_caso2);
+
+                            for(auto pup : v_estudante_caso2){
+                                cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
+                            }
+
+                            v_estudante_caso2.clear();
+
                             break;
 
                         case 2:
@@ -232,6 +264,15 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por UP de forma decrescente
                              */
+
+                            sorts.sortPairDecrescente(v_estudante_caso2);
+
+                            for(auto pup : v_estudante_caso2){
+                                cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
+                            }
+
+                            v_estudante_caso2.clear();
+
                             break;
 
                         case 3:
@@ -239,6 +280,15 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por nome de forma A-Z
                              */
+
+                            sorts.sortPairNomeCrescente(v_estudante_caso2);
+
+                            for(auto pup : v_estudante_caso2){
+                                cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
+                            }
+
+                            v_estudante_caso2.clear();
+
                             break;
                         
                         case 4:
@@ -246,6 +296,15 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por nome de forma Z-A
                              */
+
+                            sorts.sortPairNomeDecrescente(v_estudante_caso2);
+
+                            for(auto pup : v_estudante_caso2){
+                                cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
+                            }
+
+                            v_estudante_caso2.clear();
+
                             break;
 
                         case 5:
@@ -257,6 +316,7 @@ int main() {
 
                             cout << " UC: ";
                             cin >> uc_caso2;
+                            cout << endl;
 
                             break;
 

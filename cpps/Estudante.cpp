@@ -55,3 +55,7 @@ auto Estudante::getEstudante(){
     return estudante, inscrito;
 }
 
+bool Estudante::operator<(const Estudante &e) const {
+    return estudante.first < e.estudante.first;
+}
+

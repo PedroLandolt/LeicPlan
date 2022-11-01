@@ -13,13 +13,21 @@ class Sort {
 
     public:
 
-        vector<pair<int,string>> sortUPCrescente(vector<Estudante> &estudantes);
+        void sortUPCrescente(vector<Estudante> &estudantes);
 
-        vector<pair<int,string>> sortUPDecrescente(vector<Estudante> &estudantes);
+        void sortUPDecrescente(vector<Estudante> &estudantes);
 
-        vector<pair<int,string>> sortNomeCrescente(vector<Estudante> &estudantes);
+        void sortNomeCrescente(vector<Estudante> &estudantes);
 
-        vector<pair<int,string>> sortNomeDecrescente(vector<Estudante> &estudantes);
+        void sortNomeDecrescente(vector<Estudante> &estudantes);
+
+        void sortPairCrescente(vector<pair<int, string>> &estudantes);
+
+        void sortPairDecrescente(vector<pair<int, string>> &estudantes);
+
+        void sortPairNomeCrescente(vector<pair<int, string>> &estudantes);
+
+        void sortPairNomeDecrescente(vector<pair<int, string>> &estudantes);
 
        //bool sortbysec(const pair<int,int> &a, const pair<int,int> &b);
 

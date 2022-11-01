@@ -29,6 +29,8 @@ class Estudante {
 
         void setEstudanteInscrito(list<UCTurma> inscrito);
 
+        bool operator<(const Estudante &e) const;
+
 
     private:
 

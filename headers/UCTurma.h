@@ -15,7 +15,6 @@
 #include <sstream>
 #include <list>
 #include <set>
-#include <bits/stdc++.h>
 
 using namespace std;
 
