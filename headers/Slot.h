@@ -15,6 +15,7 @@
 #include <sstream>
 #include <list>
 #include <set>
+#include <map>
 
 using namespace std;
 
@@ -26,11 +27,15 @@ class Slot {
 
         Slot(string diaSemana, pair<float,float> hora, string tipo);
 
+        Slot(string diaSemana, pair<float,float> hora, string tipo, pair<string,string> ucturma);
+
         void setDiaSemana(string diaSemana);
 
         void setHora(pair<float,float> hora);
 
         void setTipo(string tipo);
+
+        void setUcTurma(pair<string,string> ucturma);
 
         string getDiaSemana();
 
@@ -38,11 +43,18 @@ class Slot {
 
         string getTipo();
 
+        pair<string,string> getUcTurma();
+
+        static bool compareSlot(Slot s1, Slot s2);
+
+        void printSlot(vector<Slot>& slots);
+
     private:
 
         string diaSemana;
         pair<float,float> hora;
         string tipo;
+        pair<string,string> ucturma;
 };
 
 

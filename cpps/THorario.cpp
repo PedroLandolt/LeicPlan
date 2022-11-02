@@ -39,3 +39,4 @@ list<Slot> THorario::getHoraUCTurma() {
 bool THorario::operator<(const THorario &th) const {
     return ucturma.first < th.ucturma.first;
 }
+

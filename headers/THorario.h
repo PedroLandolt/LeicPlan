@@ -26,6 +26,8 @@ public:
     bool operator<(const THorario &th) const;
 
 
+
+
 private:
 
     pair<string,string> ucturma;

@@ -8,11 +8,14 @@ int main() {
     GestaoHorario gh;
     Sort sorts;
 
+
     cout << " A ler o ficheiro students_classes.csv..." << endl;
 
     //Leitura dos ficheiros
     vector<Estudante> v_estudantes;
     gh.lerFichEst(v_estudantes); //retorna um set de estudantes
+
+
 
 // dar print ao vector de estudantes choura de minas!
 /*
@@ -30,7 +33,18 @@ int main() {
     }
 */
 
-    set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
+    struct EstudanteCompare {
+        bool operator()(Estudante* lhs, Estudante* rhs) const {
+            return lhs->getEstudantePair().first < rhs->getEstudantePair().first;
+        }
+    };
+
+    set<Estudante*, EstudanteCompare> s_estudantes;
+
+    for(const auto& i : v_estudantes){
+        auto *p = new Estudante(i);
+        s_estudantes.insert(p);
+    }
 
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes.csv..." << endl;
@@ -40,6 +54,34 @@ int main() {
 
     set<THorario> s_horarios(v_horarios.begin(), v_horarios.end());
 
+    vector<Slot> v_slots;
+    gh.lerFichSlot(v_slots); //retorna um vector de slots
+
+    struct slotCompareTurma {
+        bool operator()(Slot* lhs, Slot* rhs) const {
+            return lhs->getUcTurma().second < rhs->getUcTurma().second;
+        }
+    };
+
+    struct slotCompareUc {
+        bool operator()(Slot* lhs, Slot* rhs) const {
+            return lhs->getUcTurma().first < rhs->getUcTurma().first;
+        }
+    };
+
+    set<Slot*, slotCompareTurma> s_slots_turma;
+    set<Slot*, slotCompareUc> s_slots_uc;
+
+    for(const auto& i : v_slots){
+        auto *p = new Slot(i);
+        s_slots_turma.insert(p);
+        s_slots_uc.insert(p);
+    }
+/*
+    for(auto i : v_slots){
+        cout << i.getUcTurma().first << " " << i.getUcTurma().second << " " << i.getDiaSemana() << endl;
+    }
+*/
 /* print do vector de horarios
 
     int horario_n = 1;
@@ -104,6 +146,7 @@ int main() {
 
 
     do{
+        gh.clear();
         cout << " Escolha uma opcao: " << endl;
         cout << endl;
         cout << " 0 - Sair" << endl;
@@ -115,10 +158,9 @@ int main() {
         cout << " 6 - Mostrar horario de um estudante" << endl;
         cout << " 7 - Mostrar horario de uma turma" << endl;
         cout << " 8 - Mostrar horario de uma UC" << endl;
-        cout << " 9 - Mostrar vagas de uma turma" << endl;
-        cout << " 10 - Fazer pedido de mudanca de turma" << endl;
-        cout << " 11 - Listar pedidos de mudanca de turma" << endl;
-        cout << " 12 - Processar pedidos de mudanca de turma" << endl;
+        cout << " 9 - Fazer pedido de mudanca de turma" << endl;
+        cout << " 10 - Listar pedidos de mudanca de turma" << endl;
+        cout << " 11 - Processar pedidos de mudanca de turma" << endl;
         cout << endl;
 
         cin >> choice;
@@ -139,6 +181,7 @@ int main() {
                 choice = 1;
 
                 do{
+                    gh.clear();
                     cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
@@ -809,14 +852,32 @@ int main() {
                 cout << " UP: ";
                 cin >> id_estudante_caso6;
 
-                cout << " Nome: ";
-                cin >> nome_estudante_caso6;
-
-                estudante_caso6 = make_pair(id_estudante_caso6, nome_estudante_caso6);
-
 
                 do{
-                        
+
+                    //Lista as disciplinas do estudante
+                    list<UCTurma> l_ucturma_caso6;
+                    for(auto p : s_estudantes){
+                        if(p->getEstudantePair().first == id_estudante_caso6){
+                            l_ucturma_caso6 = p->getEstudanteInscrito();
+                            cout << " Estudante: " << p->getEstudantePair().second << endl;
+                        }
+                    }
+
+
+                    vector<Slot> slot_ucturma_caso6;
+                    Slot slot_caso6;
+
+                    for(auto p : l_ucturma_caso6){
+                        for(auto i : v_slots){
+                            if(p.getUCTurma() == i.getUcTurma()){
+                                slot_ucturma_caso6.push_back(i);
+                            }
+                        }
+                    }
+
+                    slot_caso6.printSlot(slot_ucturma_caso6);
+
                     //cout horario estudante
                     cout << " Escolha uma opcao: " << endl;
                     cout << endl;
@@ -840,14 +901,10 @@ int main() {
                             /**
                             * @brief Escolher outro estudante
                             */
-
+                            cout << endl;
                             cout << " UP: ";
                             cin >> id_estudante_caso6;
 
-                            cout << " Nome: ";
-                            cin >> nome_estudante_caso6;
-
-                            estudante_caso6 = make_pair(id_estudante_caso6, nome_estudante_caso6);
 
                             break;
 
@@ -868,7 +925,18 @@ int main() {
                 cin >> turma_caso7;
 
                 do{
-                        
+
+                    vector<Slot> slot_ucturma_caso7;
+                    Slot slot_caso7;
+
+                    for(auto p : v_slots){
+                        if(p.getUcTurma().second == turma_caso7){
+                            slot_ucturma_caso7.push_back(p);
+                        }
+                    }
+
+                    slot_caso7.printSlot(slot_ucturma_caso7);
+
                     //cout horario turma
                     cout << " Escolha uma opcao: " << endl;
                     cout << endl;
@@ -915,7 +983,18 @@ int main() {
                 cin >> uc_caso8;
 
                 do{
-                            
+
+                    vector<Slot> slot_ucturma_caso8;
+                    Slot slot_caso8;
+
+                    for(auto p : v_slots){
+                        if(p.getUcTurma().first == uc_caso8){
+                            slot_ucturma_caso8.push_back(p);
+                        }
+                    }
+
+                    slot_caso8.printSlot(slot_ucturma_caso8);
+
                     //cout horario UC
                     cout << " Escolha uma opcao: " << endl;
                     cout << endl;
@@ -954,56 +1033,9 @@ int main() {
                 
                 break;
 
-            //Mostrar vagas de uma turma
+            //Fazer pedido de mudanca de turma
             case 9:
                 choice = 9;
-                int choice9;
-
-                cout << " Turma: ";
-                cin >> turma_caso9;
-
-                do{
-                            
-                    //cout vagas turma
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Escolher outra turma" << endl;
-                    cout << endl;
-
-                    cin >> choice9;
-
-                    switch(choice9){
-                        case 0:
-                            choice9 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
-                            break;
-
-                        case 1:
-                            choice9 = 1;
-
-                            /**
-                            * @brief Escolher outra turma
-                            */
-
-                            cout << " Turma: ";
-                            cin >> turma_caso9;
-
-                            break;
-
-                        default:
-                            cout << " Opcao invalida" << endl;
-                            break;
-                    }
-                    
-                } while (choice9 != 0);
-                break;
-
-            //Fazer pedido de mudanca de turma
-            case 10:
-                choice = 10;
 
                 /*
                 
@@ -1050,16 +1082,16 @@ int main() {
                 break;
                 */
             //Listar pedidos de mudanca de turma
-            case 11:
-                choice = 11;
+            case 10:
+                choice = 10;
                 
                 //cout pedidos de mudanca de turma
 
                 break;
 
             //Processar pedidos de mudanca de turma "FIFO"
-            case 12:
-                choice = 12;
+            case 11:
+                choice = 11;
                 int choice12;
 
                 do{

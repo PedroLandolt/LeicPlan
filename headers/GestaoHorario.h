@@ -19,10 +19,15 @@ public:
 
     void lerFichUCTurma(vector<UCTurma> &ucturma);
 
+    void lerFichSlot(vector<Slot> &slot);
+
+    void clear();
+
+    //void loadVaga(vector<Estudante> estudantes, list<Vaga> &vagas);
+
     queue<Pedido> getPedidos();
 
     void guardar(Pedido pedido);
-
 
     void processsar();
 
