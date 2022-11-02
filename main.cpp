@@ -158,7 +158,7 @@ int main() {
         cout << " 6 - Mostrar horario de um estudante" << endl;
         cout << " 7 - Mostrar horario de uma turma" << endl;
         cout << " 8 - Mostrar horario de uma UC" << endl;
-        cout << " 9 - Fazer pedido de mudanca de turma" << endl;
+        cout << " 9 - Fazer pedidos de mudanca de turma" << endl;
         cout << " 10 - Listar pedidos de mudanca de turma" << endl;
         cout << " 11 - Processar pedidos de mudanca de turma" << endl;
         cout << endl;
@@ -1037,50 +1037,66 @@ int main() {
             case 9:
                 choice = 9;
 
-                /*
-                
+                cout << " Escolha uma opcao: " << endl;
+                cout << endl;
+                cout << " 0 - Back" << endl;
+                cout << " 1 - Fazer um pedido" << endl;
+                cout << endl;
+
+                int choice9;
+                cin >> choice9;
+
+                gh.clear();
                 cout << " Introduza o seu UP: ";
                 cin >> id_estudante_caso10;
 
-                cout << " Introduza o seu nome: ";
-                cin >> nome_estudante_caso10;
+                do{
 
-                estudante_caso10 = make_pair(id_estudante_caso10, nome_estudante_caso10);
 
-                //confirmar se o estudante existe
+                    //confirmar se o estudante existe
 
-                //confirmado
+                    //confirmado
 
-                /////////////////////////////////////////////
+                    Estudante e_caso10;
 
-                cout << " Introduza o nome da UC para qual quer mudar: ";
-                cin >> uc_caso10;
-                
-                cout << " Introduza o nome da turma para qual quer mudar: ";
-                cin >> turma_caso10;
+                    //Complexidade O(n)
+                    for(auto p : s_estudantes){
+                        if(p->getEstudantePair().first == id_estudante_caso10){
+                            e_caso10 = *p;
+                        }
+                    }
 
-                uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
+                    /////////////////////////////////////////////
+                    gh.clear();
+                    cout << " Introduza o nome da UC para qual quer mudar: ";
+                    cin >> uc_caso10;
 
-                UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
+                    cout << " Introduza o nome da turma para qual quer mudar: ";
+                    cin >> turma_caso10;
 
-                Estudante estudante_caso10_tmp(estudante_caso10, estudante_caso10.getEstudante().getEstudanteInscrito());
+                    uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
 
-                //confirmar se a turma existe
-
-                //confirmado
-                
-                /////////////////////////////////////////////
-
-                Pedido pedido_caso10(estudante_caso10_tmp.getEstudante(), uc_turma_caso10);
-                
-                gh.guardar(pedido_caso10);
-
-                cout << endl;    
-                cout << "O seu pedido foi guardado na lista de espera!" << endl;
-                cout << endl;
+                    for(auto p : e_caso10.getEstudanteInscrito()){
+                        if(p.getUCTurma() == uc_turma_caso10){
+                            cout << " Ja esta inscrito nessa turma" << endl;
+                            break;
+                        }
+                        else if(p.getUCTurma().first == uc_caso10 && p.getUCTurma().second != turma_caso10 && p.getUCTurma().second[0] == turma_caso10[0]){
+                            UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
+                            Pedido pedido_caso10(e_caso10, uc_turma_caso10);
+                            gh.guardar(pedido_caso10);
+                            cout << " Pedido de mudanca de turma enviado" << endl;
+                            break;
+                        }
+                        else{
+                            cout << "Pedido invalido" << endl;
+                            break;
+                        }
+                    }
+                } while (choice9 != 0);
 
                 break;
-                */
+
             //Listar pedidos de mudanca de turma
             case 10:
                 choice = 10;

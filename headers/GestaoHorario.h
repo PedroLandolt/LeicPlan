@@ -23,8 +23,6 @@ public:
 
     void clear();
 
-    //void loadVaga(vector<Estudante> estudantes, list<Vaga> &vagas);
-
     queue<Pedido> getPedidos();
 
     void guardar(Pedido pedido);
