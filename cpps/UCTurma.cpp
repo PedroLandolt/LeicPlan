@@ -27,3 +27,8 @@ pair<string,string> UCTurma::getUCTurma() {
 void UCTurma::setUCTurma(pair<string, string> ucturma) {
     this->ucturma = ucturma;
 }
+
+//operator overload
+bool UCTurma::operator<(const UCTurma &uct) const {
+    return ucturma.first < uct.ucturma.first;
+}

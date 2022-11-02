@@ -11,3 +11,35 @@
  *                             tipo de UC (T, TP ou PL)
  */
 
+//constructor
+Slot::Slot() {}
+
+Slot::Slot(string diaSemana, pair<float,float> hora, string tipo) {
+    this->diaSemana = diaSemana;
+    this->hora = hora;
+    this->tipo = tipo;
+}
+
+void Slot::setDiaSemana(string diaSemana) {
+    this->diaSemana = diaSemana;
+}
+
+void Slot::setHora(pair<float,float> hora) {
+    this->hora = hora;
+}
+
+void Slot::setTipo(string tipo) {
+    this->tipo = tipo;
+}
+
+string Slot::getDiaSemana() {
+    return diaSemana;
+}
+
+pair<float,float> Slot::getHora() {
+    return hora;
+}
+
+string Slot::getTipo() {
+    return tipo;
+}

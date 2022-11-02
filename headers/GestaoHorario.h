@@ -15,6 +15,10 @@ public:
 
     void lerFichEst(vector<Estudante> &estudantes);
 
+    void lerFichHorario(vector<THorario> &horario);
+
+    void lerFichUCTurma(vector<UCTurma> &ucturma);
+
     queue<Pedido> getPedidos();
 
     void guardar(Pedido pedido);

@@ -21,7 +21,7 @@
 
 
 
-void GestaoHorario::lerFichEst(vector<Estudante> &estudantes/*string nomeFich*/) {
+void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
 
 
     ifstream file;
@@ -65,11 +65,89 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes/*string nomeFich*/)
 
     file.close();
 }
-/*else if(nomeFich == "classes"){
+
+void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
+
     ifstream file;
-    file.open(string("../data/" + nomeFich + ".csv").c_str());
+    file.open("../data/classes.csv");
     string line;
+
+    getline(file, line); //para ignorar a primeira linha
+
+    THorario horarioAtual;
+
+    vector<pair<pair<string,string>,Slot>> temp;
+
+    pair<string, string> currentUcTurma;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string uc, turma, dia, horaInicio, tempoAula, tipo;
+
+        getline(ss, turma, ',');
+        getline(ss, uc, ',');
+        getline(ss, dia, ',');
+        getline(ss, horaInicio, ',');
+        getline(ss, tempoAula, ',');
+        getline(ss, tipo, ',');
+
+        pair<string, string> ucturma = make_pair(uc, turma);
+
+        pair<float,float> duracao = make_pair(stof(horaInicio), stof(tempoAula));
+
+        Slot slots(dia, duracao, tipo);
+
+        pair<pair<string,string>,Slot> ucturmaslot = make_pair(ucturma,slots);
+
+        temp.push_back(ucturmaslot);
+    }
+
+    vector<UCTurma> ucturmas_temp;
+    lerFichUCTurma(ucturmas_temp);
+
+    for(auto x : ucturmas_temp){
+        list<Slot> slots;
+        for(auto y : temp){
+
+            if(x.getUCTurma() == y.first){
+                slots.push_back(y.second);
+            }
+        }
+        horarioAtual = THorario(x.getUCTurma(),slots);
+        horarios.push_back(horarioAtual);
+    }
+    horarios.push_back(horarioAtual);
+    horarios.erase(horarios.end());
+
+    file.close();
 }
+
+// tentar ler o ficheiro classes.csv e depois comparar com o vector temporario e depois meter no vector horarios
+
+
+void GestaoHorario::lerFichUCTurma(vector<UCTurma> &ucturma) {
+
+    ifstream file;
+    file.open("../data/classes_per_uc.csv");
+    string line;
+
+    getline(file, line); //para ignorar a primeira linha
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string uc, turma;
+
+        getline(ss, uc, ',');
+        getline(ss, turma, ',');
+
+        pair<string, string> ucturma1 = make_pair(uc, turma);
+
+        UCTurma ucturma2(ucturma1);
+
+        ucturma.push_back(ucturma2);
+    }
+}
+/*
 else if(nomeFich == "classes_per_uc"){
     ifstream file;
     file.open(string("../data/" + nomeFich + ".csv").c_str());

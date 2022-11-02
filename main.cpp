@@ -42,11 +42,31 @@ int main() {
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes.csv..." << endl;
 
-    //auto uc_turmas = gh.lerFichEst("classes");
+    vector<THorario> v_horarios;
+    gh.lerFichHorario(v_horarios); //retorna um vector de horarios
+
+    set<THorario> s_horarios(v_horarios.begin(), v_horarios.end());
+
+    int horario_choura = 1;
+    for(auto i : v_horarios){
+        cout << horario_choura << " - " << i.getUcTurma().first << " " << i.getUcTurma().second << endl;
+        for(auto j : i.getHoraUCTurma()){
+            cout << j.getDiaSemana() << " | Inicio: " << j.getHora().first << " | Duracao: " << j.getHora().second << " | Tipo: " << j.getTipo()  << endl;
+        }
+        cout << " Numero de aulas por semana: " << i.getHoraUCTurma().size() << endl;
+        cout << endl;
+        cout << "||||||||||||||||||||||||||||||||" << endl;
+        cout << endl;
+        horario_choura++;
+    }
 
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes_per_uc.csv..." << endl;
 
+    vector<UCTurma> v_ucturma;
+    gh.lerFichUCTurma(v_ucturma); //retorna um vector de ucturma
+
+    set<UCTurma> s_ucturma(v_ucturma.begin(), v_ucturma.end());
     //auto horarios = gh.lerFichEst("classes_per_uc");
 
     cout << " Ficheiro lido com sucesso!" << endl;
