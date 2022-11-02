@@ -66,6 +66,7 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
     file.close();
 }
 
+//Le ficheiro classes.csv
 void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
 
     ifstream file;
@@ -122,9 +123,8 @@ void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
     file.close();
 }
 
-// tentar ler o ficheiro classes.csv e depois comparar com o vector temporario e depois meter no vector horarios
 
-
+//Ler ficheiro classes_per_uc.csv
 void GestaoHorario::lerFichUCTurma(vector<UCTurma> &ucturma) {
 
     ifstream file;

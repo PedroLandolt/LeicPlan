@@ -16,7 +16,7 @@ int main() {
 
 // dar print ao vector de estudantes choura de minas!
 /*
-    int choura = 1;
+    int estudante_n = 1;
     for(auto i : v_estudantes){
         cout << choura << " - " << i.getEstudantePair().first << " " << i.getEstudantePair().second << endl;
         for(auto j : i.getEstudanteInscrito()){
@@ -26,19 +26,12 @@ int main() {
         cout << endl;
         cout << "||||||||||||||||||||||||||||||||" << endl;
         cout << endl;
-        choura++;
+        estudante_n++;
     }
 */
 
     set<Estudante> s_estudantes(v_estudantes.begin(), v_estudantes.end());
 
-/*
-    set<Estudante> s_estudantes = sorts.sortUPCrescente(v_estudantes);
-
-    for(auto i : v_estudantes){
-        s_estudantes.insert(i);
-    }
-*/
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes.csv..." << endl;
 
@@ -47,7 +40,9 @@ int main() {
 
     set<THorario> s_horarios(v_horarios.begin(), v_horarios.end());
 
-    int horario_choura = 1;
+/* print do vector de horarios
+
+    int horario_n = 1;
     for(auto i : v_horarios){
         cout << horario_choura << " - " << i.getUcTurma().first << " " << i.getUcTurma().second << endl;
         for(auto j : i.getHoraUCTurma()){
@@ -57,8 +52,9 @@ int main() {
         cout << endl;
         cout << "||||||||||||||||||||||||||||||||" << endl;
         cout << endl;
-        horario_choura++;
+        horario_n++;
     }
+*/
 
     cout << " Ficheiro lido com sucesso!" << endl;
     cout << " A ler o ficheiro classes_per_uc.csv..." << endl;
@@ -67,23 +63,22 @@ int main() {
     gh.lerFichUCTurma(v_ucturma); //retorna um vector de ucturma
 
     set<UCTurma> s_ucturma(v_ucturma.begin(), v_ucturma.end());
-    //auto horarios = gh.lerFichEst("classes_per_uc");
+
+// print do vector de ucturma
+/*
+    int ucturma_n = 1;
+    for(auto i : v_ucturma){
+        cout << ucturma_choura << " - " << i.getUCTurma().first << " " << i.getUCTurma().second << endl;
+        ucturma_n++;
+        cout << endl;
+        cout << "||||||||||||||||||||||||||||||||" << endl;
+        cout << endl;
+    }
+*/
 
     cout << " Ficheiro lido com sucesso!" << endl;
 
-    //Primeiro sort
-
-
-
-    //Pedidos de mudança de turma
-    //gh.getPedidos();
-    //gh.processsar();
-    //gh.listagem();
-
-
-    //menu
-
-    cout << " A inciar o menu..." << endl;
+    cout << " A iniciar o processamento..." << endl;
 
     int choice;
 
@@ -96,9 +91,20 @@ int main() {
     pair<int,string> estudante_caso6, estudante_caso10, estudante_caso1;
     vector<pair<int,string>> v_estudante_caso2, v_estudante_caso3, v_estudante_caso4, v_estudante_caso5;
 
-    
+
+    //Pedidos de mudança de turma
+    //gh.getPedidos();
+    //gh.processsar();
+    //gh.listagem();
+
+
+    //menu
+    cout << " A inciar o menu..." << endl;
+    cout << endl;
+
 
     do{
+        cout << " Escolha uma opcao: " << endl;
         cout << endl;
         cout << " 0 - Sair" << endl;
         cout << " 1 - Listar estudantes" << endl;
@@ -133,6 +139,7 @@ int main() {
                 choice = 1;
 
                 do{
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
@@ -262,7 +269,7 @@ int main() {
                         choice2 = 5;
                         break;
                     }
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
@@ -399,7 +406,7 @@ int main() {
                         }
                     }
 
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
@@ -529,7 +536,7 @@ int main() {
                         }
                     }
 
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
@@ -698,7 +705,7 @@ int main() {
                         }
                     }
 
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Ordenar estudantes por UP crescente" << endl;
@@ -811,7 +818,7 @@ int main() {
                 do{
                         
                     //cout horario estudante
-                
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Escolher outro estudante" << endl;
@@ -863,7 +870,7 @@ int main() {
                 do{
                         
                     //cout horario turma
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Escolher outra turma" << endl;
@@ -910,7 +917,7 @@ int main() {
                 do{
                             
                     //cout horario UC
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Escolher outra UC" << endl;
@@ -958,7 +965,7 @@ int main() {
                 do{
                             
                     //cout vagas turma
-
+                    cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
                     cout << " 1 - Escolher outra turma" << endl;
