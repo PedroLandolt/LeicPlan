@@ -8,26 +8,36 @@
  * Aqui vamos ter de guardar os pedidos e processar os pedidos de mudança de turma
  */
 
-Pedido::Pedido(Estudante estudante, UCTurma turma){
+Pedido::Pedido() {}
+
+Pedido::Pedido(Estudante estudante, UCTurma turma, string turma_atual) {
     this->estudante = estudante;
     this->turma = turma;
+    this->turma_atual = turma_atual;
 }
 
-auto Pedido::getEstudante() {
+Estudante Pedido::getEstudante() {
     return this->estudante;
 }
 
-auto Pedido::getTurma() {
+UCTurma Pedido::getUCTurma() {
     return this->turma;
+}
+
+string Pedido::getTurmaAtual() {
+    return this->turma_atual;
 }
 
 void Pedido::setEstudante(Estudante estudante) {
     this->estudante = estudante;
 }
 
-void Pedido::setTurma(UCTurma turma) {
+void Pedido::setUCTurma(UCTurma turma) {
     this->turma = turma;
 }
 
+void Pedido::setTurmaAtual(string turma_atual) {
+    this->turma_atual = turma_atual;
+}
 
 

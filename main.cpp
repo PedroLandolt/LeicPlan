@@ -1,7 +1,9 @@
 #include "headers/GestaoHorario.h"
 
 int main() {
-    
+
+    //system("color 09");
+
     cout << " A iniciar o programa..." << endl;
     
 
@@ -125,13 +127,16 @@ int main() {
     int choice;
 
     string uc_caso2 , uc_caso4, uc_caso8, uc_caso10;
-    string turma_caso3, turma_caso4, turma_caso7, turma_caso9, turma_caso10;
+    string turma_caso3, turma_caso4, turma_caso7, turma_caso9, turma_caso10, turma_caso_atual10;
     string nome_estudante_caso6, nome_estudante_caso10;
     char ano_caso5;
     int id_estudante_caso6, id_estudante_caso10;
     pair<string,string> uc_turma_caso4, uc_turma_caso10;
     pair<int,string> estudante_caso6, estudante_caso10, estudante_caso1;
     vector<pair<int,string>> v_estudante_caso2, v_estudante_caso3, v_estudante_caso4, v_estudante_caso5;
+
+
+    Pedido p_temp10;
 
 
     //Pedidos de mudança de turma
@@ -147,20 +152,26 @@ int main() {
 
     do{
         gh.clear();
-        cout << " Escolha uma opcao: " << endl;
-        cout << endl;
-        cout << " 0 - Sair" << endl;
-        cout << " 1 - Listar estudantes" << endl;
-        cout << " 2 - Listar estudantes inscritos numa UC" << endl;
-        cout << " 3 - Listar estudantes inscritos numa turma" << endl;
-        cout << " 4 - Listar estudantes inscritos numa UC e turma" << endl;
-        cout << " 5 - Listar estudantes incritos num dado ano" << endl;
-        cout << " 6 - Mostrar horario de um estudante" << endl;
-        cout << " 7 - Mostrar horario de uma turma" << endl;
-        cout << " 8 - Mostrar horario de uma UC" << endl;
-        cout << " 9 - Fazer pedidos de mudanca de turma" << endl;
-        cout << " 10 - Listar pedidos de mudanca de turma" << endl;
-        cout << " 11 - Processar pedidos de mudanca de turma" << endl;
+        cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+        cout << "||------------------------ MENU -------------------------||" << endl;
+        cout << "|| Escolha uma opcao:                                    ||" << endl;
+        cout << "||_______________________________________________________||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||   1 - Listar estudantes                               ||" << endl;
+        cout << "||   2 - Listar estudantes inscritos numa UC             ||" << endl;
+        cout << "||   3 - Listar estudantes inscritos numa turma          ||" << endl;
+        cout << "||   4 - Listar estudantes inscritos numa UC e turma     ||" << endl;
+        cout << "||   5 - Listar estudantes incritos num dado ano         ||" << endl;
+        cout << "||   6 - Mostrar horario de um estudante                 ||" << endl;
+        cout << "||   7 - Mostrar horario de uma turma                    ||" << endl;
+        cout << "||   8 - Mostrar horario de uma UC                       ||" << endl;
+        cout << "||   9 - Fazer pedidos de mudanca de turma               ||" << endl;
+        cout << "||   10 - Informacoes sobre pedidos de mudanca de turma  ||" << endl;
+        cout << "||   11 - Processar pedidos de mudanca de turma          ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||   0 - Sair                                            ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
         cout << endl;
 
         cin >> choice;
@@ -274,7 +285,6 @@ int main() {
 
 
             //Listar estudantes inscritos numa UC
-            
             case 2:
 
                 choice = 2;
@@ -983,7 +993,7 @@ int main() {
                 cin >> uc_caso8;
 
                 do{
-
+                    //cout horario UC
                     vector<Slot> slot_ucturma_caso8;
                     Slot slot_caso8;
 
@@ -995,7 +1005,7 @@ int main() {
 
                     slot_caso8.printSlot(slot_ucturma_caso8);
 
-                    //cout horario UC
+
                     cout << " Escolha uma opcao: " << endl;
                     cout << endl;
                     cout << " 0 - Back" << endl;
@@ -1036,72 +1046,187 @@ int main() {
             //Fazer pedido de mudanca de turma
             case 9:
                 choice = 9;
-
-                cout << " Escolha uma opcao: " << endl;
-                cout << endl;
-                cout << " 0 - Back" << endl;
-                cout << " 1 - Fazer um pedido" << endl;
-                cout << endl;
-
                 int choice9;
-                cin >> choice9;
-
-                gh.clear();
-                cout << " Introduza o seu UP: ";
-                cin >> id_estudante_caso10;
 
                 do{
+                    cout << " Escolha uma opcao: " << endl;
+                    cout << endl;
+                    cout << " 0 - Back" << endl;
+                    cout << " 1 - Fazer um pedido" << endl;
+                    cout << endl;
 
 
-                    //confirmar se o estudante existe
-
-                    //confirmado
-
+                    cin >> choice9;
                     Estudante e_caso10;
+                    bool flag;
 
-                    //Complexidade O(n)
-                    for(auto p : s_estudantes){
-                        if(p->getEstudantePair().first == id_estudante_caso10){
-                            e_caso10 = *p;
-                        }
-                    }
+                    switch (choice9) {
 
-                    /////////////////////////////////////////////
-                    gh.clear();
-                    cout << " Introduza o nome da UC para qual quer mudar: ";
-                    cin >> uc_caso10;
+                        case 0:
 
-                    cout << " Introduza o nome da turma para qual quer mudar: ";
-                    cin >> turma_caso10;
-
-                    uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
-
-                    for(auto p : e_caso10.getEstudanteInscrito()){
-                        if(p.getUCTurma() == uc_turma_caso10){
-                            cout << " Ja esta inscrito nessa turma" << endl;
+                            choice9 = 0;
+                            /**
+                            * Deve voltar ao menu principal
+                            */
                             break;
-                        }
-                        else if(p.getUCTurma().first == uc_caso10 && p.getUCTurma().second != turma_caso10 && p.getUCTurma().second[0] == turma_caso10[0]){
-                            UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
-                            Pedido pedido_caso10(e_caso10, uc_turma_caso10);
-                            gh.guardar(pedido_caso10);
-                            cout << " Pedido de mudanca de turma enviado" << endl;
+
+                        case 1:
+
+                            /**
+                             * @brief Fazer um pedido
+                             */
+
+                            choice9 = 1;
+
+                            //do {
+                            gh.clear();
+                            cout << " Introduza o seu UP: ";
+                            cin >> id_estudante_caso10;
+                            // } while (gh.checkUP(id_estudante_caso10) == false);
+
+                            //confirmar se o estudante existe
+
+                            //confirmado
+
+
+
+                            //Complexidade O(n)
+                            for (auto p: s_estudantes) {
+
+                                if (p->getEstudantePair().first == id_estudante_caso10) {
+                                    e_caso10 = *p;
+                                }
+                            }
+
+                            /////////////////////////////////////////////
+                            gh.clear();
+                            cout << " Introduza o nome da UC que quer fazer mudança de turma: ";
+                            cin >> uc_caso10;
+
+                            cout << " Introduza o nome da turma que quer fazer mudança de turma: ";
+                            cin >> turma_caso_atual10;
+
+                            cout << " Introduza o nome da turma para qual quer mudar: ";
+                            cin >> turma_caso10;
+
+                            uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
+
+
+                            flag = false;
+
+                            for (auto p: e_caso10.getEstudanteInscrito()) {
+
+                                if (p.getUCTurma() == uc_turma_caso10) {
+                                    cout << " Ja esta inscrito nessa turma" << endl;
+                                    flag = true;
+                                    break;
+                                } else if (p.getUCTurma().first == uc_caso10 &&
+                                           p.getUCTurma().second != turma_caso10 &&
+                                           p.getUCTurma().second[0] == turma_caso10[0]) {
+                                    UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
+                                    Pedido pedido_caso10(e_caso10, uc_turma_caso10, turma_caso_atual10);
+                                    gh.guardar(pedido_caso10);
+                                    cout << " Pedido de mudanca de turma enviado" << endl;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+
+                            if(!flag){
+                                cout << " Nao esta inscrito nessa UC ou Turma invalida" << endl;
+                            }
                             break;
-                        }
-                        else{
-                            cout << "Pedido invalido" << endl;
+
+                        default:
+
+                            cout << " Opcao invalida" << endl;
                             break;
-                        }
                     }
                 } while (choice9 != 0);
 
                 break;
 
+
             //Listar pedidos de mudanca de turma
             case 10:
                 choice = 10;
-                
+                int choice10;
                 //cout pedidos de mudanca de turma
+
+                do{
+
+                    cout << " Escolha uma opcao: " << endl;
+                    cout << endl;
+                    cout << " 0 - Back" << endl;
+                    cout << " 1 - Mostrar Pedido mais antigo" << endl;
+                    cout << " 2 - Mostrar Pedido mais recente" << endl;
+                    cout << " 3 - Mostrar todos os pedidos" << endl;
+                    //cout << " talvez - Mostrar pedidos de um estudante" << endl;
+                    cout << endl;
+
+                    cin >> choice10;
+
+                    switch (choice10) {
+
+                        case 0:
+                            choice10 = 0;
+                            /**
+                            * Deve voltar ao menu principal
+                            */
+                            break;
+
+                        case 1:
+                            choice10 = 1;
+
+                            /**
+                            * @brief Mostrar Pedido mais antigo
+                            */
+
+                            gh.clear();
+
+                            p_temp10 = gh.getPedidos().front();
+
+                            if(gh.getPedidos().empty()){
+                                cout << " Nao existem pedidos" << endl;
+                            }
+                            else {
+                                cout << " Pedido mais antigo: " << endl;
+                                cout << endl;
+                                gh.printPedido(p_temp10);
+                            }
+
+                            break;
+
+                        case 2:
+                            choice10 = 2;
+
+                            /**
+                            * @brief Mostrar Pedido mais recente
+                            */
+
+                            gh.clear();
+                            //gh.mostrarPedidoMaisRecente();
+
+                            break;
+
+                        case 3:
+                            choice10 = 3;
+
+                            /**
+                            * @brief Mostrar todos os pedidos
+                            */
+
+                            gh.clear();
+                            //gh.mostrarPedidos();
+
+                            break;
+
+                        default:
+                            cout << " Opcao invalida" << endl;
+                            break;
+                    }
+
+                }while(choice10 != 0);
 
                 break;
 

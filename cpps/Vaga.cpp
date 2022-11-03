@@ -1,26 +1,32 @@
 //
 // Created by pland on 02/11/2022.
 //
-/*
+
 #include "../headers/Vaga.h"
 
 Vaga::Vaga() {}
 
-Vaga::Vaga(pair<pair<string,string>, int> vagas) {
+Vaga::Vaga(string uc, pair<string, int> vagas) {
+    this->uc = uc;
     this->vagas = vagas;
 }
 
-pair<string, int> Vaga::getVagas() {
+pair<string,int> Vaga::getVagas() {
     return vagas;
 }
 
+string Vaga::getUC() {
+    return uc;
 }
 
-void Vaga::setVagas(pair<string, int> vagas) {
+void Vaga::setVagas(pair<string,int> vagas) {
     this->vagas = vagas;
 }
 
-bool Vaga::operator<(const Vaga &v) const {
-    return vagas.first < v.vagas.first;
+void Vaga::setUC(string uc) {
+    this->uc = uc;
 }
-*/
+
+//bool Vaga::operator<(const Vaga &v) const {
+//    return this->uc < v.uc;
+//}

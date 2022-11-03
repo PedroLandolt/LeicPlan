@@ -5,19 +5,7 @@
 #ifndef AED_PROJETO_SLOT_H
 #define AED_PROJETO_SLOT_H
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <utility>
-#include <iterator>
-#include <queue>
-#include <fstream>
-#include <sstream>
-#include <list>
-#include <set>
-#include <map>
-
-using namespace std;
+#include "Vaga.h"
 
 class Slot {
 

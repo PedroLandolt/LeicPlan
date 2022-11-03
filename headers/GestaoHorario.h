@@ -33,6 +33,8 @@ public:
 
     auto getEstudante();
 
+    void printPedido(Pedido prt_pedido);
+
     
 private:
 

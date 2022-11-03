@@ -198,14 +198,22 @@ else if(nomeFich == "classes_per_uc"){
    // return estudantes;
     
 
-/*
+
 queue<Pedido> GestaoHorario::getPedidos() {
     return pedidos;
 }
-*/
+
 void GestaoHorario::guardar(Pedido pedido) {
     pedidos.push(pedido);
+}
 
+void GestaoHorario::printPedido(Pedido prt_pedido) {
+
+    cout << " UP: " << prt_pedido.getEstudante().getEstudantePair().first  << " | Nome: " << prt_pedido.getEstudante().getEstudantePair().second << endl;
+
+    cout << " Trocar da turma " /*turma atual*/ << prt_pedido.getTurmaAtual() << " -> para a turma " /*qual quer mudar */ << prt_pedido.getUCTurma().getUCTurma().second << endl;
+    cout << " na UC: " << prt_pedido.getUCTurma().getUCTurma().first << endl;
+    cout << endl;
 }
 /*
 void GestaoHorario::processsar() {

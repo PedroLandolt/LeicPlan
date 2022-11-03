@@ -10,20 +10,27 @@
 class Pedido {
     public:
 
-        Pedido(Estudante estudante, UCTurma turma);
+        Pedido();
 
-        auto getEstudante();
+        Pedido(Estudante estudante, UCTurma turma, string turma_atual);
 
-        auto getTurma();
+        Estudante getEstudante();
+
+        UCTurma getUCTurma();
+
+        string getTurmaAtual();
 
         void setEstudante(Estudante estudante);
 
-        void setTurma(UCTurma turma);
+        void setUCTurma(UCTurma turma);
+
+        void setTurmaAtual(string turma_atual);
 
 
     private:
         Estudante estudante;
         UCTurma turma;
+        string turma_atual;
 };
 
 
