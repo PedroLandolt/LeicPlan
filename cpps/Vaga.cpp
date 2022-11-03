@@ -6,12 +6,12 @@
 
 Vaga::Vaga() {}
 
-Vaga::Vaga(string uc, pair<string, int> vagas) {
+Vaga::Vaga(string uc, list<pair<string, int>> vagas) {
     this->uc = uc;
     this->vagas = vagas;
 }
 
-pair<string,int> Vaga::getVagas() {
+list<pair<string,int>>& Vaga::getVagas() {
     return vagas;
 }
 
@@ -19,13 +19,15 @@ string Vaga::getUC() {
     return uc;
 }
 
-void Vaga::setVagas(pair<string,int> vagas) {
+void Vaga::setVagas(list<pair<string,int>> vagas) {
     this->vagas = vagas;
 }
 
 void Vaga::setUC(string uc) {
     this->uc = uc;
 }
+
+
 
 //bool Vaga::operator<(const Vaga &v) const {
 //    return this->uc < v.uc;

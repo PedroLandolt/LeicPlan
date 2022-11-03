@@ -2,7 +2,7 @@
 
 int main() {
 
-    //system("color 09");
+    system("Color 09");
 
     cout << " A iniciar o programa..." << endl;
     
@@ -71,6 +71,8 @@ int main() {
         }
     };
 
+
+
     set<Slot*, slotCompareTurma> s_slots_turma;
     set<Slot*, slotCompareUc> s_slots_uc;
 
@@ -112,7 +114,7 @@ int main() {
 /*
     int ucturma_n = 1;
     for(auto i : v_ucturma){
-        cout << ucturma_choura << " - " << i.getUCTurma().first << " " << i.getUCTurma().second << endl;
+        cout << ucturma_n << " - " << i.getUCTurma().first << " " << i.getUCTurma().second << endl;
         ucturma_n++;
         cout << endl;
         cout << "||||||||||||||||||||||||||||||||" << endl;
@@ -124,6 +126,39 @@ int main() {
 
     cout << " A iniciar o processamento..." << endl;
 
+    struct vagaCompare {
+        bool operator()(Vaga* lhs, Vaga* rhs) const {
+            return lhs->getUC() < rhs->getUC();
+        }
+    };
+
+    vector<Vaga> v_vagas;
+    gh.prepararVagas(v_vagas); //retorna um vector de vagas
+
+    set<Vaga*, vagaCompare> s_vagas;
+
+    for(const auto& i : v_vagas){
+        auto *p = new Vaga(i);
+        s_vagas.insert(p);
+    }
+
+
+    gh.ajustarVagas(v_vagas);
+
+
+
+/*
+    for(auto i : v_vagas){
+        for(const auto& j : i.getVagas()){
+            cout << i.getUC() << endl;
+            cout << j.first << " " << j.second << " " << endl;
+        }
+    }
+*/
+
+
+
+    //Varaveis para o menu
     int choice;
 
     string uc_caso2 , uc_caso4, uc_caso8, uc_caso10;
@@ -134,16 +169,11 @@ int main() {
     pair<string,string> uc_turma_caso4, uc_turma_caso10;
     pair<int,string> estudante_caso6, estudante_caso10, estudante_caso1;
     vector<pair<int,string>> v_estudante_caso2, v_estudante_caso3, v_estudante_caso4, v_estudante_caso5;
-
+    queue<Pedido> q_pedidos = gh.getPedidos();
 
     Pedido p_temp10;
 
-
-    //Pedidos de mudança de turma
-    //gh.getPedidos();
-    //gh.processsar();
-    //gh.listagem();
-
+    Estudante temp_est;
 
     //menu
     cout << " A inciar o menu..." << endl;
@@ -193,13 +223,19 @@ int main() {
 
                 do{
                     gh.clear();
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Ordenar estudantes por UP crescente" << endl;
-                    cout << " 2 - Ordenar estudantes por UP decrescente" << endl;
-                    cout << " 3 - Ordenar estudantes por nome A-Z" << endl;
-                    cout << " 4 - Ordenar estudantes por nome Z-A" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||------------------- LISTAR ESTUDANTES -----------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Ordenar estudantes por UP crescente             ||" << endl;
+                    cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
+                    cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
+                    cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
                     cin >> choice1;
@@ -219,13 +255,16 @@ int main() {
                              * @return lista ordenada estudantes por UP de forma crescente
                              */
 
+                            gh.clear();
+
                             sorts.sortUPCrescente(v_estudantes);
 
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
 
-                            cout << endl;
+                            gh.wait();
+
                             break;
 
                         case 2:
@@ -233,14 +272,16 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por UP de forma decrescente
                              */
-                            
+
+                            gh.clear();
+
                             sorts.sortUPDecrescente(v_estudantes);
                             
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
 
-                            cout << endl;
+                            gh.wait();
 
                             break;
 
@@ -249,6 +290,8 @@ int main() {
                             /**
                              * @return lista ordenada estudantes por nome de forma A-Z
                              */
+
+                            gh.clear();
                             
                             sorts.sortNomeCrescente(v_estudantes);
 
@@ -256,7 +299,7 @@ int main() {
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
 
-                            cout << endl;
+                            gh.wait();
 
                             break;
                         
@@ -266,16 +309,24 @@ int main() {
                              * @return lista ordenada estudantes por nome de forma Z-A
                              */
 
+                            gh.clear();
+
                             sorts.sortNomeDecrescente(v_estudantes);
 
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
+
+                            gh.wait();
                             
                             break;
 
                         default:
+
+                            gh.clear();
                             cout << " Opcao invalida" << endl;
+
+                            gh.wait();
                             break;
                     }
 
@@ -289,15 +340,13 @@ int main() {
 
                 choice = 2;
                 int choice2;
-                
+
+                gh.clear();
                 cout << " UC: ";
+                cout << endl;
                 cin >> uc_caso2;
 
                 do{
-
-                    cout << endl;
-                    cout << " UC escolhida: " << uc_caso2 << endl;
-                    cout << endl;
 
                     //iff com while para verificar se a UC existe
 
@@ -305,31 +354,45 @@ int main() {
                     //limpar lixo de v_estudante_caso2
                     v_estudante_caso2.clear();
                     //listar estudantes inscritos na UC
-                    for(auto p : v_estudantes){
-                        auto j = p.getEstudanteInscrito();
+                    for(auto p : s_estudantes){
+                        auto j = p->getEstudanteInscrito();
                         for(auto i : j){
                             if(i.getUCTurma().first == uc_caso2){
-                                v_estudante_caso2.push_back(p.getEstudantePair());
+                                v_estudante_caso2.push_back(p->getEstudantePair());
                             }
                         }
                     }
 
-                    cin >> choice2;
-                    cout << endl;
-
                     if(v_estudante_caso2.empty()){
+                        gh.clear();
                         cout << " Nao existem estudantes inscritos nesta UC" << endl;
                         choice2 = 5;
+
+                        gh.wait();
+
                         break;
                     }
-                    cout << " Escolha uma opcao: " << endl;
+
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||-------------- LISTAR ESTUDANTES NUMA UC --------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   UC escolhida -> " << uc_caso2 << "                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Ordenar estudantes por UP crescente             ||" << endl;
+                    cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
+                    cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
+                    cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
+                    cout << "||   5 - Escolher outra UC                               ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Ordenar estudantes por UP crescente" << endl;
-                    cout << " 2 - Ordenar estudantes por UP decrescente" << endl;
-                    cout << " 3 - Ordenar estudantes por nome A-Z" << endl;
-                    cout << " 4 - Ordenar estudantes por nome Z-A" << endl;
-                    cout << " 5 - Escolher outra UC" << endl;
+
+                    cin >> choice2;
                     cout << endl;
 
                     switch(choice2){
@@ -346,11 +409,15 @@ int main() {
                              * @return lista ordenada estudantes por UP de forma crescente
                              */
 
+                            gh.clear();
+
                             sorts.sortPairCrescente(v_estudante_caso2);
 
                             for(auto pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
+
+                            gh.wait();
 
                             break;
 
@@ -360,11 +427,15 @@ int main() {
                              * @return lista ordenada estudantes por UP de forma decrescente
                              */
 
+                            gh.clear();
+
                             sorts.sortPairDecrescente(v_estudante_caso2);
 
                             for(auto pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
+
+                            gh.wait();
 
                             break;
 
@@ -374,11 +445,15 @@ int main() {
                              * @return lista ordenada estudantes por nome de forma A-Z
                              */
 
+                            gh.clear();
+
                             sorts.sortPairNomeCrescente(v_estudante_caso2);
 
                             for(auto pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
+
+                            gh.wait();
 
                             break;
                         
@@ -388,11 +463,15 @@ int main() {
                              * @return lista ordenada estudantes por nome de forma Z-A
                              */
 
+                            gh.clear();
+
                             sorts.sortPairNomeDecrescente(v_estudante_caso2);
 
                             for(auto pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
+
+                            gh.wait();
 
                             break;
 
@@ -403,6 +482,8 @@ int main() {
                              * @brief Escolher outra UC
                              */
 
+                            gh.clear();
+
                             cout << " UC: ";
                             cin >> uc_caso2;
                             cout << endl;
@@ -410,7 +491,12 @@ int main() {
                             break;
 
                         default:
+
+                            gh.clear();
+
                             cout << " Opcao invalida" << endl;
+
+                            gh.wait();
                             break;
                     }
 
@@ -424,18 +510,14 @@ int main() {
                 choice = 3;
                 int choice3;
 
+                gh.clear();
                 cout << " Turma: ";
+                cout << endl;
                 cin >> turma_caso3;
 
 
 
                 do{
-                        
-                    cout << endl;
-                    cout << " Turma escolhida: " << turma_caso3 << endl;
-                    cout << endl;
-
-                    //iff com while para verificar se a turma existe
 
                     //limpa o lixo de v_estudante_caso3
                     v_estudante_caso3.clear();
@@ -459,14 +541,22 @@ int main() {
                         }
                     }
 
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Ordenar estudantes por UP crescente" << endl;
-                    cout << " 2 - Ordenar estudantes por UP decrescente" << endl;
-                    cout << " 3 - Ordenar estudantes por nome A-Z" << endl;
-                    cout << " 4 - Ordenar estudantes por nome Z-A" << endl;
-                    cout << " 5 - Escolher outra turma" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||------------- LISTAR ESTUDANTES NUMA TURMA ------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   Turma escolhida -> " << turma_caso3 << "                          ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Ordenar estudantes por UP crescente             ||" << endl;
+                    cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
+                    cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
+                    cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
+                    cout << "||   5 - Escolher outra UC                               ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
                     cin >> choice3;
@@ -1184,12 +1274,12 @@ int main() {
 
                             gh.clear();
 
-                            p_temp10 = gh.getPedidos().front();
 
                             if(gh.getPedidos().empty()){
                                 cout << " Nao existem pedidos" << endl;
                             }
                             else {
+                                p_temp10 = gh.getPedidos().front();
                                 cout << " Pedido mais antigo: " << endl;
                                 cout << endl;
                                 gh.printPedido(p_temp10);
@@ -1205,7 +1295,18 @@ int main() {
                             */
 
                             gh.clear();
-                            //gh.mostrarPedidoMaisRecente();
+
+
+
+                            if(gh.getPedidos().empty()){
+                                cout << " Nao existem pedidos" << endl;
+                            }
+                            else {
+                                p_temp10 = gh.getPedidos().back();
+                                cout << " Pedido mais recente: " << endl;
+                                cout << endl;
+                                gh.printPedido(p_temp10);
+                            }
 
                             break;
 
@@ -1217,7 +1318,22 @@ int main() {
                             */
 
                             gh.clear();
-                            //gh.mostrarPedidos();
+
+                            if(gh.getPedidos().empty()){
+                                cout << " Nao existem pedidos" << endl;
+                            }
+                            else {
+                                queue<Pedido> pedidos_caso10 = gh.getPedidos();
+                                int i = 1;
+                                while(!pedidos_caso10.empty()){
+                                    p_temp10 = pedidos_caso10.front();
+                                    cout << " Pedido -: " << i << ": " << endl;
+                                    cout << endl;
+                                    gh.printPedido(p_temp10);
+                                    pedidos_caso10.pop();
+                                    i++;
+                                }
+                            }
 
                             break;
 
@@ -1236,7 +1352,8 @@ int main() {
                 int choice12;
 
                 do{
-                    
+                    unsigned long long contador = gh.getPedidos().size();
+                    int numero = 0;
                     //cout primeiro pedido de mudanca de turma
 
                     cout << endl;
@@ -1264,9 +1381,115 @@ int main() {
                              * @brief Processar pedidos
                             */
 
+
+
+                            do{
+                                gh.clear();
+
+                                if(gh.getPedidos().empty()){
+                                    cout << " Nao existem pedidos" << endl;
+                                    gh.wait();
+                                }
+                                else {
+                                    p_temp10 = gh.getPedidos().front();
+
+                                    gh.printPedido(p_temp10);
+
+                                    cout << " Pedido numero: " << numero << " | Faltam: " << contador << endl;
+                                    contador--;
+                                    numero++;
+
+                                    gh.wait();
+
+                                    if (!gh.sobreposicao(p_temp10, v_slots) || !gh.equilibrio(p_temp10, v_vagas)) {
+                                        gh.getPedidos().pop();
+                                        gh.printPedido(p_temp10);
+                                        cout << " Nao foi possivel processar o pedido" << endl;
+                                    }
+
+                                    else {
+
+                                        gh.getPedidos().pop();
+                                        gh.printPedido(p_temp10);
+
+                                        int choice11_1;
+
+                                        do {
+                                            cout << " Escolha uma opcao: " << endl;
+                                            cout << endl;
+                                            cout << " 1 - Aceitar Pedido" << endl;
+                                            cout << " 2 - Recusar Pedido" << endl;
+                                            cout << endl;
+
+                                            switch (choice11_1) {
+                                                case 2:
+                                                    choice11_1 = 2;
+                                                    /**
+                                                     * Recusa pedido e remove da queue
+                                                     *
+                                                     * @brief Recusar pedido
+                                                     */
+
+                                                    gh.clear();
+
+                                                    gh.printPedido(p_temp10);
+
+                                                    cout << " Pedido recusado" << endl;
+                                                    gh.wait();
+                                                    break;
+
+                                                case 1:
+                                                    choice11_1 = 1;
+                                                    /**
+                                                     * Aceita pedido e remove da queue
+                                                     * Mudar uc e turma do estudante
+                                                     *
+                                                     * @brief Processar pedidos
+                                                    */
+
+                                                    gh.clear();
+
+                                                    temp_est = p_temp10.getEstudante();
+
+                                                    for (auto x: s_estudantes) {
+                                                        if (x->getEstudantePair().first ==
+                                                            temp_est.getEstudantePair().first) {
+                                                            for (auto &y: x->getEstudanteInscrito()) {
+                                                                if (y.getUCTurma().first ==
+                                                                    p_temp10.getUCTurma().getUCTurma().first) {
+                                                                    pair<string, string> temp_pair = make_pair(
+                                                                            p_temp10.getUCTurma().getUCTurma().second,
+                                                                            p_temp10.getUCTurma().getUCTurma().first);
+                                                                    y.setUCTurma(temp_pair);
+                                                                    gh.getPedidos().pop();
+                                                                    gh.printPedido(p_temp10);
+                                                                    cout << " Pedido aceite" << endl;
+                                                                    gh.wait();
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    break;
+
+                                                default:
+                                                    cout << " Opcao invalida" << endl;
+                                                    break;
+                                            }
+
+                                        } while (true);
+
+                                        gh.processarPedido(p_temp10);
+
+                                        cout << " Pedido processado com sucesso" << endl;
+                                    }
+
+                                }
+                            }while(true);
                             break;
 
                         default:
+
                             cout << " Opcao invalida" << endl;
                             break;
                     }

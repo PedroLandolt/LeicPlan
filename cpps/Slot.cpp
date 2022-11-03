@@ -75,6 +75,9 @@ bool Slot::compareSlot(Slot s1, Slot s2) {
     return false;
 }
 
+void Slot::sortSlots(vector<Slot> &slots) {
+    sort(slots.begin(), slots.end(), compareSlot);
+}
 
 void Slot::printSlot(vector<Slot>& slots) {
 

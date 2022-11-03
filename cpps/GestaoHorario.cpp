@@ -11,8 +11,6 @@
 
 //include cpps
 
-
-
 /**
  * vamos ter de ter um set <Estudante> estudantes; para ir buscar toda a info dos estudantes
  *                  um vector <THorario> horarios; para ir buscar o horarios das turmas
@@ -22,7 +20,6 @@
 
 
 void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
-
 
     ifstream file;
 
@@ -59,7 +56,6 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
 
         estudanteAtual.getEstudanteInscrito().push_back(ucturma1);
     }
-
     estudantes.push_back(estudanteAtual);
     estudantes.erase(estudantes.begin());
 
@@ -178,8 +174,77 @@ void GestaoHorario::lerFichSlot(vector<Slot> &slot) {
         file.close();
 }
 
+void GestaoHorario::prepararVagas(vector<Vaga> &vagas) {
 
+    const int cap = 30;
+    int temp = cap;
 
+    vector<UCTurma> vg_ucturma;
+    lerFichUCTurma(vg_ucturma);
+
+    Vaga vaga;
+
+    UCTurma current_ucturma;
+
+    for(auto x : vg_ucturma){
+
+        list<pair<string,int>> l_vaga;
+
+        if (current_ucturma.getUCTurma().first != x.getUCTurma().first) {
+            vagas.push_back(vaga);
+            vaga = Vaga(x.getUCTurma().first, l_vaga);
+        }
+
+        current_ucturma = x;
+
+        pair<string,int> vagas_temp = make_pair(x.getUCTurma().second, temp);
+        vaga.getVagas().push_back(vagas_temp);
+    }
+
+    vagas.push_back(vaga);
+    vagas.erase(vagas.begin());
+}
+
+void GestaoHorario::ajustarVagas(vector<Vaga> &vagas) {
+
+    vector<pair<string, string>> ucturmas;
+
+    ifstream file;
+
+    file.open("../data/students_classes.csv");
+    string line;
+
+    getline(file, line); //para ignorar a primeira linha
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string uc, turma;
+        string null1, null2;
+
+        getline(ss, null1, ',');
+        getline(ss, null2, ',');
+        getline(ss, uc, ',');
+        getline(ss, turma, ',');
+        //generate turma
+
+        pair<string, string> ucturma = make_pair(uc, turma);
+
+        ucturmas.push_back(ucturma);
+    }
+    file.close();
+
+    for(const auto& x : ucturmas){
+        for(auto& y : vagas){
+            if(x.first == y.getUC()){
+                for(auto& z : y.getVagas()){
+                    if(x.second == z.first){
+                        z.second--;
+                    }
+                }
+            }
+        }
+    }
+}
 
 void GestaoHorario::clear() {
     for (int i = 0; i < 100; i++) {
@@ -187,17 +252,13 @@ void GestaoHorario::clear() {
     }
 }
 
-
-/*
-else if(nomeFich == "classes_per_uc"){
-    ifstream file;
-    file.open(string("../data/" + nomeFich + ".csv").c_str());
-    string line;
+void GestaoHorario::wait() {
+    cout << endl;
+    int c; do c = getchar(); while ((c != '\n') && (c != EOF));
+    cout << " Press ENTER to continue...";
+    cout << endl;
+    do{ c = getchar(); }while ((c != '\n') && (c != EOF));
 }
-*/
-   // return estudantes;
-    
-
 
 queue<Pedido> GestaoHorario::getPedidos() {
     return pedidos;
@@ -215,15 +276,88 @@ void GestaoHorario::printPedido(Pedido prt_pedido) {
     cout << " na UC: " << prt_pedido.getUCTurma().getUCTurma().first << endl;
     cout << endl;
 }
-/*
-void GestaoHorario::processsar() {
 
+bool GestaoHorario::sobreposicao(Pedido pedido, vector<Slot> slots) {
+
+    Estudante estudante = pedido.getEstudante();
+
+    list<UCTurma> ucturmas = estudante.getEstudanteInscrito();
+
+    UCTurma turma_pedido = pedido.getUCTurma();
+
+    list<UCTurma> ucturma_temp;
+
+    for(auto x : ucturmas){
+        if(x.getUCTurma().first == turma_pedido.getUCTurma().first){
+            ucturma_temp.push_back(turma_pedido);
+        }
+        else{
+            ucturma_temp.push_back(x);
+        }
+    }
+
+    // 2º parte
+    vector<Slot> slots_temp;
+    for(auto x : ucturma_temp){
+        for(auto y : slots){
+            if(x.getUCTurma() == y.getUcTurma()){
+                slots_temp.push_back(y);
+            }
+        }
+    }
+
+    Slot slot;
+    slot.sortSlots(slots_temp);
+
+    for(int i = 0; i < slots_temp.size(); i++){
+        if(slots_temp[i].getDiaSemana() == slots_temp[i+1].getDiaSemana()){
+            if(slots_temp[i].getHora().first + slots_temp[i].getHora().second > slots_temp[i+1].getHora().first){
+                if(slots_temp[i].getTipo() != "T" && slots_temp[i+1].getTipo() != "T"){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
-void GestaoHorario::listagem() {
+bool GestaoHorario::equilibrio(Pedido pedido, vector<Vaga> vagas) {
+
+        UCTurma ucturma = pedido.getUCTurma();
+
+        int min = INT_MAX;
+        int diff = 0;
+
+
+        for(auto x : vagas){
+            if(x.getUC() == ucturma.getUCTurma().first){
+                for(const auto& y : x.getVagas()){
+                    if(y.second < min){
+                        min = y.second;
+                    }
+                }
+            }
+        }
+
+
+        for(auto x : vagas){
+            if(x.getUC() == ucturma.getUCTurma().first){
+                for(const auto& y : x.getVagas()){
+                    if(y.first == ucturma.getUCTurma().second){
+                        if(y.second - min < 4){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+}
+
+void processarPedido(Pedido pedido) {
+
+
+
 
 }
-*/
-//auto GestaoHorario::getEstudante(){
-//    return estudante;
 

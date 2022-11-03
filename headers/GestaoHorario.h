@@ -21,19 +21,26 @@ public:
 
     void lerFichSlot(vector<Slot> &slot);
 
+    void prepararVagas(vector<Vaga> &vagas);
+
+    void ajustarVagas(vector<Vaga> &vagas);
+
+    bool sobreposicao(Pedido pedido , vector<Slot> slots);
+
+    bool equilibrio(Pedido pedido , vector<Vaga> vagas);
+
+    void processarPedido(Pedido pedido);
+
     void clear();
+    void wait();
 
     queue<Pedido> getPedidos();
 
     void guardar(Pedido pedido);
 
-    void processsar();
-
-    void listagem();
-
-    auto getEstudante();
-
     void printPedido(Pedido prt_pedido);
+
+
 
     
 private:

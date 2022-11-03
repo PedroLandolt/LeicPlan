@@ -27,13 +27,13 @@ public:
 
         Vaga();
 
-        Vaga(string uc , pair<string, int> vagas); // uc e pair<turma,nº vagas>
+        Vaga(string uc , list<pair<string, int>> vagas); // uc e pair<turma,nº vagas>
 
-        pair<string,int> getVagas();
+        list<pair<string,int>>& getVagas();
 
         string getUC();
 
-        void setVagas(pair<string,int> vagas);
+        void setVagas(list<pair<string,int>> vagas);
 
         void setUC(string uc);
 
@@ -41,7 +41,7 @@ public:
 
 private:
 
-        pair<string,int> vagas;
+        list<pair<string,int>> vagas;
         string uc;
 
 };

@@ -37,6 +37,8 @@ class Slot {
 
         void printSlot(vector<Slot>& slots);
 
+        void sortSlots(vector<Slot>& slots);
+
     private:
 
         string diaSemana;
