@@ -1,10 +1,6 @@
-//
-// Created by pland on 30/10/2022.
-//
-
-
 
 #include "../headers/Sort.h"
+
 
 void Sort::sortUPCrescente(vector<Estudante> &estudantes) {
 
@@ -61,9 +57,3 @@ void Sort::sortPairNomeDecrescente(vector<pair<int, string>> &estudantes) {
         return a.second > b.second;
     });
 }
-
-/*
-bool sortbysec(const pair<int, string> &a, const pair<int, string> &b) {
-    return (a.second < b.second);
-}
-*/

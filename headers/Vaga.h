@@ -1,9 +1,7 @@
-//
-// Created by pland on 02/11/2022.
-//
-
 #ifndef AED_PROJETO_VAGA_H
 #define AED_PROJETO_VAGA_H
+
+/** Dependencies */
 
 #include <string>
 #include <vector>
@@ -24,28 +22,52 @@
 
 using namespace std;
 
+
 class Vaga {
+
 public:
 
-        Vaga();
+    /** Default Constructor */
+    Vaga();
 
-        Vaga(string uc , list<pair<string, int>> vagas); // uc e pair<turma,nº vagas>
 
-        list<pair<string,int>>& getVagas();
+    /** Constructor
+     * @param uc String com o código de uma UC
+     * @param vagas Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     */
+    Vaga(string uc , list<pair<string, int>> vagas);
 
-        string getUC();
 
-        void setVagas(list<pair<string,int>> vagas);
+    /** Getter
+     * @return Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     */
+    list<pair<string,int>>& getVagas();
 
-        void setUC(string uc);
 
-        //bool operator<(const Vaga &v) const;
+    /** Getter
+     * @return String com o código de uma UC
+     */
+    string getUC();
+
+
+    /** Setter
+     * @param vagas Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     */
+    void setVagas(list<pair<string,int>> vagas);
+
+
+    /** Setter
+     * @param uc String com o código de uma UC
+     */
+    void setUC(string uc);
+
 
 private:
 
-        list<pair<string,int>> vagas;
-        string uc;
+    list<pair<string,int>> vagas;     /** Lista de pares composto por uma string (codigo da turma), e um inteiro (numero de vagas dessa turma) */
+    string uc;                        /** String com o código de uma UC */
 
 };
+
 
 #endif //AED_PROJETO_VAGA_H

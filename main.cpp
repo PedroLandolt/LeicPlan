@@ -99,14 +99,6 @@ int main() {
     //Ajustar vagas para o numero de vagas - numero de estudantes inscritos nas mesmas
     gh.ajustarVagas(v_vagas);
 
-
-    for(auto i : v_vagas){
-        cout << i.getUC() << endl;
-        for(const auto& j : i.getVagas()){
-            cout << j.first << " " << j.second << endl;
-        }
-    }
-
     //Varaveis para o menu
 
     string opcao, opcao1, opcao2, opcao3, opcao_menu;
@@ -619,7 +611,7 @@ int main() {
                         cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
                         cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
                         cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
-                        cout << "||   5 - Escolher outra UC                               ||" << endl;
+                        cout << "||   5 - Escolher outra Turma                            ||" << endl;
                         cout << "||                                                       ||" << endl;
                         cout << "||   0 - Back                                            ||" << endl;
                         cout << "||                                                       ||" << endl;
@@ -821,8 +813,8 @@ int main() {
                         cout << "|| Escolha uma opcao:                                    ||" << endl;
                         cout << "||_______________________________________________________||" << endl;
                         cout << "||                                                       ||" << endl;
-                        cout << "||   UC escolhida -> " << uc_caso2 << "                            ||" << endl;
-                        cout << "||   Turma escolhida -> " << turma_caso3 << "                          ||" << endl;
+                        cout << "||   UC escolhida -> " << uc_caso4 << "                            ||" << endl;
+                        cout << "||   Turma escolhida -> " << turma_caso4 << "                          ||" << endl;
                         cout << "||                                                       ||" << endl;
                         cout << "||   1 - Ordenar estudantes por UP crescente             ||" << endl;
                         cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
@@ -1059,7 +1051,7 @@ int main() {
                         cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
                         cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
                         cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
-                        cout << "||   5 - Escolher outra UC                               ||" << endl;
+                        cout << "||   5 - Escolher outra Ano                              ||" << endl;
                         cout << "||                                                       ||" << endl;
                         cout << "||   0 - Back                                            ||" << endl;
                         cout << "||                                                       ||" << endl;
@@ -1362,9 +1354,9 @@ int main() {
                     cout << "|| Escolha uma opcao:                                    ||" << endl;
                     cout << "||_______________________________________________________||" << endl;
                     cout << "||                                                       ||" << endl;
-                    cout << "||   Turma escolhida -> " << turma_caso3 << "                          ||" << endl;
+                    cout << "||   Turma escolhida -> " << turma_caso7 << "                          ||" << endl;
                     cout << "||                                                       ||" << endl;
-                    cout << "||   1 - Escolher outro estudante                        ||" << endl;
+                    cout << "||   1 - Escolher outra Turma                            ||" << endl;
                     cout << "||                                                       ||" << endl;
                     cout << "||   0 - Back                                            ||" << endl;
                     cout << "||                                                       ||" << endl;
@@ -1432,9 +1424,9 @@ int main() {
                 do{
 
                     //Verificar se a UC existe
-                    while(!GestaoHorario::checkUC(uc_caso8, v_ucturma)){
+                    while(!GestaoHorario::checkUC(opcao, v_ucturma)){
                         cout << endl;
-                        cout << " Opcao invalida! UC inexistente. Insira uma turma valida: ";
+                        cout << " Opcao invalida! UC inexistente. Insira uma UC valida: ";
                         cin >> opcao;
                     }
                     uc_caso8 = opcao;
@@ -1470,7 +1462,7 @@ int main() {
                     cout << "||                                                       ||" << endl;
                     cout << "||   UC escolhida -> " << uc_caso8 << "                            ||" << endl;
                     cout << "||                                                       ||" << endl;
-                    cout << "||   1 - Escolher outro estudante                        ||" << endl;
+                    cout << "||   1 - Escolher outra UC                               ||" << endl;
                     cout << "||                                                       ||" << endl;
                     cout << "||   0 - Back                                            ||" << endl;
                     cout << "||                                                       ||" << endl;
@@ -1586,15 +1578,17 @@ int main() {
 
                             choice9 = 1;
 
-                            //do {
+
                             gh.clear();
                             cout << " Introduza o seu UP: ";
-                            cin >> id_estudante_caso10;
-                            // } while (gh.checkUP(id_estudante_caso10) == false);
+                            cin >> opcao;
 
-                            //confirmar se o estudante existe
 
-                            //confirmado
+                            while(!GestaoHorario::checkUP(id_estudante_caso10)){
+                                cout << endl;
+                                cout << " Opcao invalida! Insira um UP valido: ";
+                                cin >> id_estudante_caso10;
+                            }
 
 
 

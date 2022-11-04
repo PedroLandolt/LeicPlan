@@ -1,22 +1,5 @@
-//
-// Created by pland on 28/10/2022.
-//
-
-//include functions
-
-
-//include headers
 
 #include "../headers/GestaoHorario.h"
-
-//include cpps
-
-/**
- * vamos ter de ter um set <Estudante> estudantes; para ir buscar toda a info dos estudantes
- *                  um vector <THorario> horarios; para ir buscar o horarios das turmas
- *                  um queue <Pedido> pedidos; para dar queue aos pedidos de mudança de turma
- */
-
 
 
 void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
@@ -62,7 +45,6 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
     file.close();
 }
 
-//Le ficheiro classes.csv
 void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
 
     ifstream file;
@@ -119,8 +101,6 @@ void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
     file.close();
 }
 
-
-//Ler ficheiro classes_per_uc.csv
 void GestaoHorario::lerFichUCTurma(vector<UCTurma> &ucturma) {
 
     ifstream file;

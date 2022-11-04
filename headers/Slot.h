@@ -1,50 +1,108 @@
-//
-// Created by pland on 28/10/2022.
-//
-
 #ifndef AED_PROJETO_SLOT_H
 #define AED_PROJETO_SLOT_H
 
-#include "Vaga.h"
+#include "Vaga.h"  /** O header 'Vaga.h' contém definições de constantes usadas neste header */
+
 
 class Slot {
 
-    public:
+public:
 
-        Slot();
+    /** Default constructor */
+    Slot();
 
-        Slot(string diaSemana, pair<float,float> hora, string tipo);
 
-        Slot(string diaSemana, pair<float,float> hora, string tipo, pair<string,string> ucturma);
+    /** Constructor
+     * @param diaSemana String com o dia da semana no qual há uma determinada aula
+     * @param hora Par constituido por dois floats, a hora e a duração de uma aula
+     * @param tipo String com o tipo de aula (T, TP ou PL)
+    */
+    Slot(string diaSemana, pair<float,float> hora, string tipo);
 
-        void setDiaSemana(string diaSemana);
 
-        void setHora(pair<float,float> hora);
+    /** Constructor
+     * @param diaSemana String com o dia da semana no qual há uma determinada aula
+     * @param hora Par constituido por dois floats, a hora e a duração de uma aula
+     * @param tipo String com o tipo de aula (T, TP ou PL)
+     * @param ucturma Objeto UCTurma
+    */
+    Slot(string diaSemana, pair<float,float> hora, string tipo, pair<string,string> ucturma);
 
-        void setTipo(string tipo);
 
-        void setUcTurma(pair<string,string> ucturma);
+    /** Setter
+     * @param diaSemana String com o dia da semana no qual há uma determinada aula
+    */
+    void setDiaSemana(string diaSemana);
 
-        string getDiaSemana();
 
-        pair<float,float> getHora();
+    /** Setter
+     * @param hora Par constituido por dois floats, a hora e a duração de uma aula
+    */
+    void setHora(pair<float,float> hora);
 
-        string getTipo();
 
-        pair<string,string> getUcTurma();
+    /** Setter
+     * @param tipo String com o tipo de aula (T, TP ou PL)
+    */
+    void setTipo(string tipo);
 
-        static bool compareSlot(Slot s1, Slot s2);
 
-        void printSlot(vector<Slot>& slots);
+    /** Setter
+     * @param ucturma Objeto UCTurma
+    */
+    void setUcTurma(pair<string,string> ucturma);
 
-        void sortSlots(vector<Slot>& slots);
 
-    private:
+    /** Getter
+     * @return String com o dia da semana no qual há uma determinada aula
+    */
+    string getDiaSemana();
 
-        string diaSemana;
-        pair<float,float> hora;
-        string tipo;
-        pair<string,string> ucturma;
+
+    /** Getter
+     * @return Par constituido por dois floats, a hora e a duração de uma aula
+    */
+    pair<float,float> getHora();
+
+
+    /** Getter
+     * @return String com o tipo de aula (T, TP ou PL)
+    */
+    string getTipo();
+
+
+    /** Getter
+     * @return Objeto UCTurma
+    */
+    pair<string,string> getUcTurma();
+
+
+    /** Função que compara dois objetos do tipo Slot
+     * @param s1 Objeto do tipo Slot
+     * @param s2 Objeto do tipo Slot
+     * @return True quando o primeiro parametro "acontece" antes do segundo, isto é, acontece num dia da semana anterior ou ,se acontecer no mesmo dia, acontece numa hora anterior
+     * @return False quando isso não acontece
+    */
+    static bool compareSlot(Slot s1, Slot s2);
+
+
+    /** Função que dá print ao conteudo do vetor 'slots', aula a aula (com todas as informaçoes necessarias), de forma a facilitar a leitura
+     * @param slots Vetor constituido por objetos do tipo Slot
+    */
+    void printSlot(vector<Slot>& slots);
+
+
+    /** Função que ordena o vetor 'slots' utilizando a função compareSlot()
+     * @param slots Vetor constituido por objetos do tipo Slot
+    */
+    void sortSlots(vector<Slot>& slots);
+
+private:
+
+    string diaSemana;              /** String com o dia da semana no qual há uma determinada aula */
+    pair<float,float> hora;        /** Par constituido por dois floats, a hora e a duração de uma aula */
+    string tipo;                   /** String com o tipo de aula (T, TP ou PL) */
+    pair<string,string> ucturma;   /** Objeto UCTurma */
 };
 
 
