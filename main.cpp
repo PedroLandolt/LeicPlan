@@ -1584,11 +1584,12 @@ int main() {
                             cin >> opcao;
 
 
-                            while(!GestaoHorario::checkUP(id_estudante_caso10)){
+                            while(!GestaoHorario::checkEstudante(opcao, v_estudantes)){
                                 cout << endl;
                                 cout << " Opcao invalida! Insira um UP valido: ";
-                                cin >> id_estudante_caso10;
+                                cin >> opcao;
                             }
+                            id_estudante_caso10 = stoi(opcao);
 
 
 
