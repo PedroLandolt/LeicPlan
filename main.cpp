@@ -1,21 +1,28 @@
+/*! \file */
+
+/**
+ * Ficheiro onde estao implementados todos os diferentes menus e funçoes de print para visualizaçao das listagens e pedidos */
+ /** | */  /** | */  /** | */
+ /**   (a restante documentaçao do ficheiro main.cpp deve ser consultada no proprio ficheiro) */
+/** | */  /** | */  /** | */
+
+
 #include "headers/GestaoHorario.h"
 
 int main() {
 
-    //Output do programa têm cor azul com fundo preto
+    //Mudança de cor do output
     system("Color 09");
 
     cout << " A iniciar o programa..." << endl;
 
-    //Inicializar GestaoHorario e Sort
     GestaoHorario gh;
     Sort sorts;
 
     cout << " A ler o ficheiro students_classes.csv..." << endl;
 
-    //Leitura de students_classes.csv
     vector<Estudante> v_estudantes;
-    gh.lerFichEst(v_estudantes); //retorna um set de estudantes
+    gh.lerFichEst(v_estudantes);
 
     struct EstudanteCompare {
         bool operator()(Estudante* lhs, Estudante* rhs) const {
@@ -31,19 +38,18 @@ int main() {
     }
 
     cout << " Ficheiro lido com sucesso!" << endl;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     cout << " A ler o ficheiro classes.csv..." << endl;
 
-
-    //Leitura de classes.csv
     vector<THorario> v_horarios;
-    gh.lerFichHorario(v_horarios); //retorna um vector de horarios
+    gh.lerFichHorario(v_horarios);
 
     set<THorario> s_horarios(v_horarios.begin(), v_horarios.end());
 
-
-    //Leitura de classes.csv para formar o vector de slots
     vector<Slot> v_slots;
-    gh.lerFichSlot(v_slots); //retorna um vector de slots
+    gh.lerFichSlot(v_slots);
 
     struct slotCompareTurma {
         bool operator()(Slot* lhs, Slot* rhs) const {
@@ -67,11 +73,13 @@ int main() {
     }
 
     cout << " Ficheiro lido com sucesso!" << endl;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     cout << " A ler o ficheiro classes_per_uc.csv..." << endl;
 
-    //Leitura de classes_per_uc.csv
     vector<UCTurma> v_ucturma;
-    gh.lerFichUCTurma(v_ucturma); //retorna um vector de ucturma
+    gh.lerFichUCTurma(v_ucturma);
 
     set<UCTurma> s_ucturma(v_ucturma.begin(), v_ucturma.end());
 
@@ -85,9 +93,8 @@ int main() {
         }
     };
 
-    //Inicializar vector de vagas
     vector<Vaga> v_vagas;
-    gh.prepararVagas(v_vagas); //retorna um vector de vagas
+    gh.prepararVagas(v_vagas);
 
     set<Vaga*, vagaCompare> s_vagas;
 
@@ -96,10 +103,9 @@ int main() {
         s_vagas.insert(p);
     }
 
-    //Ajustar vagas para o numero de vagas - numero de estudantes inscritos nas mesmas
     gh.ajustarVagas(v_vagas);
 
-    //Varaveis para o menu
+    //Declaraçao das variaveis usadas
 
     string opcao, opcao1, opcao2, opcao3, opcao_menu;
     int choice;
@@ -115,14 +121,14 @@ int main() {
     Pedido p_temp10;
     Estudante temp_est;
 
-    //menu
+
     cout << " A inciar o menu..." << endl;
     cout << endl;
 
 
     do{
         /**
-         * @brief Menu do programa com as opcoes disponiveis para o utilizador.
+         * Menu do programa com as opcoes disponiveis para o utilizador.
          */
 
         gh.clear();
@@ -149,13 +155,10 @@ int main() {
         cout << endl;
 
         /**
-         * @brief Leitura da opcao escolhida pelo utilizador.
+         * Leitura da opcao (input) escolhida pelo utilizador.
          */
         cin >> opcao_menu;
 
-        /**
-         * @brief Verificacao da opcao escolhida pelo utilizador.
-         */
         while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 11){
             cout << endl;
             cout << " Opcao invalida! Escolha uma opcao valida: ";
@@ -172,12 +175,11 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //switch case para as opcoes do menu.
+        /** Estrutura utillizada para realizar as varias funçoes disponibilizadas no menu. */
+
         switch(choice){
             case 0:
-                /**
-                 * @brief Opcao para sair do programa.
-                 */
+                /** Opcao para sair do programa. */
                 choice = 0;
                 break;
 
@@ -187,7 +189,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                //Listar estudantes
+        /** Listar Estudantes */
             case 1:
                 
                 int choice1;
@@ -195,7 +197,7 @@ int main() {
 
                 do{
                     /**
-                     * @brief Menu para listar estudantes com opcoes de ordenacao.
+                     * Menu para listar estudantes com opcoes de ordenacao.
                      */
 
                     gh.clear();
@@ -215,13 +217,9 @@ int main() {
                     cout << endl;
 
                     /**
-                     * @brief Leitura da opcao escolhida pelo utilizador.
+                     * Leitura da opcao escolhida pelo utilizador.
                      */
                     cin >> opcao_menu;
-
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
 
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 4) {
                         cout << endl;
@@ -235,23 +233,20 @@ int main() {
                     switch(choice1){
                         case 0:
                             choice1 = 0;
-                            /**
-                             * @brief Voltar ao menu principal.
-                             */
+                            /** Voltar ao menu principal. */
                             break;
 
                         case 1:
                             choice1 = 1;
                             /**
-                             * @return lista ordenada estudantes por UP de forma crescente.
+                             * Lista de estudantes ordenada por numero de estudante (UP) de forma crescente.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma crescente.
                             sorts.sortUPCrescente(v_estudantes);
 
-                            //Imprimir estudantes de forma ordenada crescente.
+                            /** Print da lista ordenada. */
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
@@ -262,15 +257,14 @@ int main() {
                         case 2:
                             choice1 = 2;
                             /**
-                             * @return lista ordenada estudantes por UP de forma decrescente.
+                             * Lista de estudantes ordenada por numero de estudante (UP) de forma decrescente.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma decrescente.
                             sorts.sortUPDecrescente(v_estudantes);
 
-                            //Imprimir estudantes de forma ordenada decrescente.
+                            /** Print da lista ordenada. */
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
@@ -281,15 +275,14 @@ int main() {
                         case 3:
                             choice1 = 3;
                             /**
-                             * @return lista ordenada estudantes por nome de forma A-Z.
+                             * Lista de estudantes ordenada por ordem alfabetica do seu nome.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma A-Z.
                             sorts.sortNomeCrescente(v_estudantes);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
+                            /** Print da lista ordenada. */
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
@@ -300,15 +293,14 @@ int main() {
                         case 4:
                             choice1 = 4;
                             /**
-                             * @return lista ordenada estudantes por nome de forma Z-A.
+                             * Lista de estudantes ordenada por ordem contraria a ordem alfabetica do seu nome.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma Z-A.
                             sorts.sortNomeDecrescente(v_estudantes);
 
-                            //Imprimir estudantes de forma ordenada Z-A.
+                            /** Print da lista ordenada. */
                             for(auto p : v_estudantes){
                                 cout << " UP: " << p.getEstudantePair().first << " | Nome: " << p.getEstudantePair().second << endl;
                             }
@@ -316,11 +308,12 @@ int main() {
                             gh.wait();
                             break;
 
+                            /** Quando o Input nao esta dentro das opcoes validas */
+
                         default:
 
                             gh.clear();
 
-                            //Imprimir mensagem de erro.
                             cout << " Opcao invalida" << endl;
 
                             gh.wait();
@@ -337,7 +330,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                //Listar estudantes inscritos numa UC
+                /** Listar estudantes inscritos numa UC */
             case 2:
 
                 choice = 2;
@@ -351,7 +344,7 @@ int main() {
                 do{
 
                     /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     * Verificacao da opcao escolhida pelo utilizador.
                     */
 
                     while(!GestaoHorario::checkUC(opcao, v_ucturma)) {
@@ -362,10 +355,8 @@ int main() {
                     }
                     uc_caso2 = opcao;
 
-                    //limpar lixo de v_estudante_caso2
                     v_estudante_caso2.clear();
 
-                    //listar estudantes inscritos na UC
                     for(auto p : v_estudantes){
                         auto j = p.getEstudanteInscrito();
                         for(auto i : j){
@@ -377,7 +368,7 @@ int main() {
 
                     /**
                      * Menu de opcoes para listar estudantes inscritos numa UC.
-                     * @brief Apenas entra no menu se e só se a UC tiver alunos inscritos.
+                     * Apenas entra no menu se e só se a UC tiver alunos inscritos.
                      */
 
                     if(v_estudante_caso2.empty()){
@@ -407,13 +398,11 @@ int main() {
                         cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                         cout << endl;
 
-                        /**
-                         * @brief Verificacao da opcao escolhida pelo utilizador.
-                         */
+
                         cin >> opcao_menu;
 
                         /**
-                        * @brief Verificacao da opcao escolhida pelo utilizador.
+                        * Verificacao da opcao escolhida pelo utilizador.
                         */
                         while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
@@ -427,23 +416,19 @@ int main() {
                     switch(choice2){
                         case 0:
                             choice2 = 0;
-                            /**
-                             * Deve voltar ao menu principal
-                             */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice2 = 1;
                             /**
-                             * @return lista ordenada estudantes por UP de forma crescente
+                             * Lista de estudantes ordenada por numero de estudante (UP) de forma crescente.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma crescente.
                             sorts.sortPairCrescente(v_estudante_caso2);
 
-                            //Imprimir estudantes de forma ordenada crescente.
                             for(const auto& pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -455,15 +440,13 @@ int main() {
                         case 2:
                             choice2 = 2;
                             /**
-                             * @return lista ordenada estudantes por UP de forma decrescente
+                             * Lista de estudantes ordenada por numero de estudante (UP) de forma decrescente.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma decrescente.
                             sorts.sortPairDecrescente(v_estudante_caso2);
 
-                            //Imprimir estudantes de forma ordenada decrescente.
                             for(const auto& pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -475,15 +458,13 @@ int main() {
                         case 3:
                             choice2 = 3;
                             /**
-                             * @return lista ordenada estudantes por nome de forma A-Z
+                             * Lista de estudantes ordenada por ordem alfabetica do seu nome.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma A-Z.
                             sorts.sortPairNomeCrescente(v_estudante_caso2);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
                             for(const auto& pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -495,15 +476,13 @@ int main() {
                         case 4:
                             choice2 = 4;
                             /**
-                             * @return lista ordenada estudantes por nome de forma Z-A
+                             * Lista de estudantes ordenada por ordem contraria a ordem alfabetica do seu nome.
                              */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma Z-A.
                             sorts.sortPairNomeDecrescente(v_estudante_caso2);
 
-                            //Imprimir estudantes de forma ordenada Z-A.
                             for(const auto& pup : v_estudante_caso2){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -515,9 +494,7 @@ int main() {
                         case 5:
                             choice2 = 5;
 
-                            /**
-                             * @brief Escolher outra UC
-                             */
+                            /** Escolher outra UC */
                             gh.clear();
 
                             cout << " UC: ";
@@ -545,7 +522,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Listar estudantes inscritos numa turma
+            /** Listar estudantes inscritos numa turma */
             case 3:
                 choice = 3;
                 int choice3;
@@ -556,10 +533,6 @@ int main() {
                 cout << endl;
 
                 do{
-
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                    */
                     while(!GestaoHorario::checkTurma(opcao, v_ucturma)) {
                         cout << endl;
                         cout << " Turma invalida! Escolha uma Turma valida: ";
@@ -568,10 +541,8 @@ int main() {
                     }
                     turma_caso3 = opcao;
 
-                    //limpa o lixo de v_estudante_caso3
                     v_estudante_caso3.clear();
 
-                    //listar estudantes inscritos na turma
                     for(auto p : v_estudantes){
                         auto j = p.getEstudanteInscrito();
                         for(auto i : j){
@@ -581,7 +552,7 @@ int main() {
                         }
                     }
 
-                    //remover dups
+                    /** Remover duplicados */
                     for(auto x = v_estudante_caso3.begin(); x != v_estudante_caso3.end(); x++){
                         for(auto y = x + 1; y != v_estudante_caso3.end(); y++){
                             if(x->first == y->first){
@@ -618,13 +589,10 @@ int main() {
                         cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                         cout << endl;
 
-                        /**
-                         * @brief Verificacao da opcao escolhida pelo utilizador.
-                         */
                         cin >> opcao_menu;
 
                         /**
-                        * @brief Verificacao da opcao escolhida pelo utilizador.
+                        * Verificacao da opcao escolhida pelo utilizador.
                         */
                         while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
@@ -638,15 +606,13 @@ int main() {
                     switch(choice3){
                         case 0:
                             choice3 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice3 = 1;
                             /**
-                            * @return lista ordenada estudantes por UP de forma crescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma crescente.
                             */
 
                             gh.clear();
@@ -666,15 +632,13 @@ int main() {
                         case 2:
                             choice3 = 2;
                             /**
-                            * @return lista ordenada estudantes por UP de forma decrescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma decrescente.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma decrescente.
                             sorts.sortPairDecrescente(v_estudante_caso3);
 
-                            //Imprimir estudantes de forma ordenada decrescente.
                             for(const auto& pup : v_estudante_caso3){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -686,15 +650,13 @@ int main() {
                         case 3:
                             choice3 = 3;
                             /**
-                            * @return lista ordenada estudantes por nome de forma A-Z
+                            * Lista de estudantes ordenada por ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma A-Z.
                             sorts.sortPairNomeCrescente(v_estudante_caso3);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
                             for(const auto& pup : v_estudante_caso3){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -706,15 +668,13 @@ int main() {
                         case 4:
                             choice3 = 4;
                             /**
-                            * @return lista ordenada estudantes por nome de forma Z-A
+                            * Lista de estudantes ordenada por ordem contraria a ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma Z-A.
                             sorts.sortPairNomeDecrescente(v_estudante_caso3);
 
-                            //Imprimir estudantes de forma ordenada Z-A.
                             for(const auto& pup : v_estudante_caso3){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -726,9 +686,7 @@ int main() {
                         case 5:
                             choice3 = 5;
 
-                            /**
-                            * @brief Escolher outra turma
-                            */
+                            /** Escolher outra turma */
 
                             cout << " Turma: ";
                             cin >> opcao;
@@ -750,7 +708,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Listar estudantes inscritos numa UC e turma
+            /** Listar estudantes inscritos num par UC, turma */
             case 4:
                 choice = 4;
                 int choice4;
@@ -762,12 +720,6 @@ int main() {
                 cout << endl;
 
                 do{
-
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                    */
-
-                    //Verificar se a UC existe.
                     while(!GestaoHorario::checkUC(opcao1, v_ucturma)) {
                         cout << endl;
                         cout << " UC invalida! Escolha uma UC valida: ";
@@ -776,7 +728,6 @@ int main() {
                     }
                     uc_caso4 = opcao1;
 
-                    //Verificar se a turma existe.
                     while(!GestaoHorario::checkTurma(opcao2, v_ucturma)) {
                         cout << endl;
                         cout << " Turma invalida! Escolha uma turma valida: ";
@@ -786,10 +737,8 @@ int main() {
                     turma_caso4 = opcao2;
                     uc_turma_caso4 = make_pair(uc_caso4, turma_caso4);
 
-                    //limpar o lixo dentro de v_estudante_caso4
                     v_estudante_caso4.clear();
 
-                    //listar estudantes inscritos na uc / turma
                     for(auto p : v_estudantes){
                         auto j = p.getEstudanteInscrito();
                         for(auto i : j){
@@ -829,13 +778,10 @@ int main() {
                         cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                         cout << endl;
 
-                        /**
-                         * @brief Verificacao da opcao escolhida pelo utilizador.
-                         */
                         cin >> opcao_menu;
 
                         /**
-                        * @brief Verificacao da opcao escolhida pelo utilizador.
+                        * Verificacao da opcao escolhida pelo utilizador.
                         */
                         while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 7){
                             cout << endl;
@@ -849,23 +795,19 @@ int main() {
                     switch(choice4){
                         case 0:
                             choice4 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice4 = 1;
                             /**
-                            * @return lista ordenada estudantes por UP de forma crescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma crescente.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma crescente.
                             sorts.sortPairCrescente(v_estudante_caso4);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
                             for(const auto& pup : v_estudante_caso4){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -877,15 +819,13 @@ int main() {
                         case 2:
                             choice4 = 2;
                             /**
-                            * @return lista ordenada estudantes por UP de forma decrescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma decrescente.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma decrescente.
                             sorts.sortPairDecrescente(v_estudante_caso4);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
                             for(const auto& pup : v_estudante_caso4){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -897,15 +837,13 @@ int main() {
                         case 3:
                             choice4 = 3;
                             /**
-                            * @return lista ordenada estudantes por nome de forma A-Z
+                            * Lista de estudantes ordenada por ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome por nome de A-Z.
                             sorts.sortPairNomeCrescente(v_estudante_caso4);
 
-                            //Imprimir estudantes de forma ordenada A-Z.
                             for(const auto& pup : v_estudante_caso4){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -917,15 +855,13 @@ int main() {
                         case 4:
                             choice4 = 4;
                             /**
-                            * @return lista ordenada estudantes por nome de forma Z-A
+                            * Lista de estudantes ordenada por ordem contraria a ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma Z-A.
                             sorts.sortPairNomeDecrescente(v_estudante_caso4);
 
-                            //Imprimir estudantes de forma ordenada Z-A.
                             for(const auto& pup : v_estudante_caso4){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -937,9 +873,7 @@ int main() {
                         case 5:
                             choice4 = 5;
 
-                            /**
-                            * @brief Escolher outra UC
-                            */
+                            /** Escolher outra UC */
 
                             cout << " UC: ";
                             cin >> opcao1;
@@ -950,9 +884,7 @@ int main() {
                         case 6:
                             choice4 = 6;
 
-                            /**
-                            * @brief Escolher outra turma
-                            */
+                            /** Escolher outra turma */
 
                             cout << " Turma: ";
                             cin >> opcao2;
@@ -963,9 +895,7 @@ int main() {
                         case 7:
                             choice4 = 7;
 
-                            /**
-                            * @brief Escolher outra UC e turma
-                            */
+                            /** Escolher outra UC e turma */
 
                             cout << " UC: ";
                             cin >> opcao1;
@@ -990,7 +920,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Listar estudantes incritos num determinado ano
+            /** Listar estudantes incritos num determinado ano */
             case 5:
                 choice = 5;
                 int choice5;
@@ -999,8 +929,6 @@ int main() {
                 cin >> opcao;
 
                 do{
-
-                    //Verificar se o ano introduzido e valido
                     while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 1 || stoi(opcao) > 3){
                         cout << endl;
                         cout << " Opcao invalida! Ano inexistente. Escolha um ano valido: ";
@@ -1008,10 +936,8 @@ int main() {
                     }
                     ano_caso5 = opcao;
 
-
-                    //limpar o lixo dentro de v_estudante_caso5
                     v_estudante_caso5.clear();
-                    //listar estudantes inscritos no ano
+
                     for(auto p : v_estudantes){
                         auto j = p.getEstudanteInscrito();
                         for(auto i : j){
@@ -1021,7 +947,7 @@ int main() {
                         }
                     }
 
-                    //limpar dups
+                    /** Limpar duplicados */
                     for(auto x = v_estudante_caso5.begin(); x != v_estudante_caso5.end(); x++){
                         for(auto y = x + 1; y != v_estudante_caso5.end(); y++){
                             if(x->first == y->first){
@@ -1058,13 +984,10 @@ int main() {
                         cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                         cout << endl;
 
-                        /**
-                         * @brief Verificacao da opcao escolhida pelo utilizador.
-                         */
                         cin >> opcao_menu;
 
                         /**
-                        * @brief Verificacao da opcao escolhida pelo utilizador.
+                        * Verificacao da opcao escolhida pelo utilizador.
                         */
                         while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
@@ -1078,23 +1001,19 @@ int main() {
                     switch(choice5){
                         case 0:
                             choice5 = 0;
-                            /**
-                            * @brief Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice5 = 1;
                             /**
-                            * @return lista ordenada estudantes por UP de forma crescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma crescente.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma crescente
                             sorts.sortPairCrescente(v_estudante_caso5);
 
-                            //Imprimir estudantes ordenados por UP de forma crescente
                             for(const auto& pup : v_estudante_caso5){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -1106,15 +1025,13 @@ int main() {
                         case 2:
                             choice5 = 2;
                             /**
-                            * @return lista ordenada estudantes por UP de forma decrescente
+                            * Lista de estudantes ordenada por numero de estudante (UP) de forma decrescente.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por UP de forma decrescente
                             sorts.sortPairDecrescente(v_estudante_caso5);
 
-                            //Imprimir estudantes ordenados por UP de forma decrescente
                             for(const auto& pup : v_estudante_caso5){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -1126,15 +1043,13 @@ int main() {
                         case 3:
                             choice5 = 3;
                             /**
-                            * @return lista ordenada estudantes por nome de forma A-Z
+                            * Lista de estudantes ordenada por ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma A-Z
                             sorts.sortPairNomeCrescente(v_estudante_caso5);
 
-                            //Imprimir estudantes ordenados por nome de forma A-Z
                             for(const auto& pup : v_estudante_caso5){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -1146,15 +1061,13 @@ int main() {
                         case 4:
                             choice5 = 4;
                             /**
-                            * @return lista ordenada estudantes por nome de forma Z-A
+                            * Lista de estudantes ordenada por ordem contraria a ordem alfabetica do seu nome.
                             */
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma Z-A
                             sorts.sortPairNomeDecrescente(v_estudante_caso5);
 
-                            //Imprimir estudantes ordenados por nome de forma Z-A
                             for(const auto& pup : v_estudante_caso5){
                                 cout << " UP: " << pup.first << " | Nome: " << pup.second << endl;
                             }
@@ -1166,9 +1079,7 @@ int main() {
                         case 5:
                             choice5 = 5;
 
-                            /**
-                            * @brief Escolher outro ano
-                            */
+                            /** Escolher outro ano */
 
                             cout << " Ano: ";
                             cin >> opcao;
@@ -1189,7 +1100,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Mostrar horario de um estudante
+            /** Mostrar horario de um estudante */
             case 6:
                 choice = 6;
                 int choice6;
@@ -1198,8 +1109,6 @@ int main() {
                 cin >> opcao;
 
                 do{
-
-                    //Verificar se o estudante existe
                     while(!GestaoHorario::checkEstudante(opcao, v_estudantes)){
                         cout << endl;
                         cout << " Opcao invalida! Estudante inexistente: ";
@@ -1208,7 +1117,7 @@ int main() {
                     id_estudante_caso6 = stoi(opcao);
 
 
-                    //Lista as disciplinas do estudante
+                    /** Guarda as UC's de um estudante numa lista */
                     list<UCTurma> l_ucturma_caso6;
                     for(auto p : v_estudantes){
                         if(p.getEstudantePair().first == id_estudante_caso6){
@@ -1216,7 +1125,7 @@ int main() {
                             nome_estudante_caso6 = p.getEstudantePair().second;
                         }
                     }
-                    //Lista o horario do estudante
+                    /** Guarda as aulas de um estudante numa lista */
                     vector<Slot> slot_ucturma_caso6;
                     Slot slot_caso6;
                     for(auto p : l_ucturma_caso6){
@@ -1227,7 +1136,8 @@ int main() {
                         }
                     }
 
-                    //print do horario do estudante
+                    /** Print do harario */
+
                     if(slot_ucturma_caso6.empty()){
                         cout << " Nao tem disciplinas inscritas neste estudante" << endl;
                         gh.wait();
@@ -1257,13 +1167,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
                         cout << endl;
@@ -1276,17 +1183,14 @@ int main() {
                     switch(choice6){
                         case 0:
                             choice6 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice6 = 1;
 
-                            /**
-                            * @brief Escolher outro estudante
-                            */
+                            /** Escolher outro estudante */
+
                             cout << endl;
                             cout << " UP: ";
                             cin >> opcao;
@@ -1308,7 +1212,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Mostrar horario de uma turma
+            /** Mostrar horario de uma turma */
             case 7:
                 choice = 7;
                 int choice7;
@@ -1317,8 +1221,6 @@ int main() {
                 cin >> opcao;
 
                 do{
-
-                    //Verificar se a turma existe
                     while(!GestaoHorario::checkTurma(opcao, v_ucturma)){
                         cout << endl;
                         cout << " Opcao invalida! Turma inexistente. Insira uma turma valida: ";
@@ -1326,7 +1228,7 @@ int main() {
                     }
                     turma_caso7 = opcao;
 
-                    //Lista o horario da turma
+                    /** Guarda numa lista todos as aulas correspondentes a uma turma */
                     vector<Slot> slot_ucturma_caso7;
                     Slot slot_caso7;
                     for(auto p : v_slots){
@@ -1335,7 +1237,8 @@ int main() {
                         }
                     }
 
-                    //Print do horario da turma
+                    /** Print do horario de uma turma */
+
                     if(slot_ucturma_caso7.empty()){
                         cout << " Nao tem disciplinas inscritas nesta turma" << endl;
                         gh.wait();
@@ -1363,13 +1266,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
                         cout << endl;
@@ -1382,17 +1282,13 @@ int main() {
                     switch(choice7){
                         case 0:
                             choice7 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice7 = 1;
 
-                            /**
-                            * @brief Escolher outra turma
-                            */
+                            /** Escolher outra turma */
 
                             cout << " Turma: ";
                             cin >> opcao;
@@ -1413,7 +1309,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Mostrar horario de uma UC
+            /** Mostrar horario de uma UC */
             case 8:
                 choice = 8;
                 int choice8;
@@ -1422,8 +1318,6 @@ int main() {
                 cin >> opcao;
 
                 do{
-
-                    //Verificar se a UC existe
                     while(!GestaoHorario::checkUC(opcao, v_ucturma)){
                         cout << endl;
                         cout << " Opcao invalida! UC inexistente. Insira uma UC valida: ";
@@ -1431,17 +1325,17 @@ int main() {
                     }
                     uc_caso8 = opcao;
 
-                    //cout horario UC
                     vector<Slot> slot_ucturma_caso8;
                     Slot slot_caso8;
 
+                    /** Guarda numa lista todas as aulas correspondentes a uma UC */
                     for(auto p : v_slots){
                         if(p.getUcTurma().first == uc_caso8){
                             slot_ucturma_caso8.push_back(p);
                         }
                     }
 
-                    //Print do horario da uc
+                    /** Print do horario de uma UC */
                     if(slot_ucturma_caso8.empty()){
                         cout << " Nao tem disciplinas inscritas nesta UC" << endl;
                         gh.wait();
@@ -1469,13 +1363,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
                         cout << endl;
@@ -1488,17 +1379,13 @@ int main() {
                     switch(choice8){
                         case 0:
                             choice8 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice8 = 1;
 
-                            /**
-                            * @brief Escolher outra UC
-                            */
+                            /** Escolher outra UC */
 
                             cout << " UC: ";
                             cin >> opcao;
@@ -1521,7 +1408,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Fazer pedido de mudanca de turma
+            /** Fazer pedido de mudanca de turma */
             case 9:
                 choice = 9;
                 int choice9;
@@ -1541,13 +1428,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
                         cout << endl;
@@ -1565,16 +1449,12 @@ int main() {
                         case 0:
 
                             choice9 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
 
-                            /**
-                             * @brief Fazer um pedido
-                             */
+                            /** Fazer um pedido */
 
                             choice9 = 1;
 
@@ -1591,9 +1471,6 @@ int main() {
                             }
                             id_estudante_caso10 = stoi(opcao);
 
-
-
-                            //Complexidade O(n)
                             for (auto p: v_estudantes) {
 
                                 if (p.getEstudantePair().first == id_estudante_caso10) {
@@ -1601,12 +1478,10 @@ int main() {
                                 }
                             }
 
-                            /////////////////////////////////////////////
                             gh.clear();
                             cout << " Introduza o codigo da UC a que quer mudar de turma: ";
                             cin >> opcao1;
 
-                            //confirmar se a UC existe
                             while(!GestaoHorario::checkUC(opcao1, v_ucturma)) {
                                 cout << endl;
                                 cout << " UC invalida! Escolha uma UC valida: ";
@@ -1618,7 +1493,6 @@ int main() {
                             cout << " Introduza o codigo da turma em que se encontra: ";
                             cin >> opcao2;
 
-                            //Verificar se a turma em que se encontra existe.
                             while(!GestaoHorario::checkTurma(opcao2, v_ucturma)) {
                                 cout << endl;
                                 cout << " Turma invalida! Escolha uma turma atual valida: ";
@@ -1630,7 +1504,6 @@ int main() {
                             cout << " Introduza o codigo da turma para qual quer mudar: ";
                             cin >> opcao3;
 
-                            //Verificar se a turma para qual quer mudar existe.
                             while(!GestaoHorario::checkTurma(opcao3, v_ucturma)) {
                                 cout << endl;
                                 cout << " Turma invalida! Escolha uma turma para qual quer mudar valida: ";
@@ -1643,7 +1516,8 @@ int main() {
 
                             flag = false;
 
-                            //Guarda o pedido caso o estudante nao esteja inscrito na turma para qual quer mudar
+                            /** Guarda o pedido de troca de turma numa queue */
+
                             for (auto p: e_caso10.getEstudanteInscrito()) {
 
                                 if (p.getUCTurma() == uc_turma_caso10) {
@@ -1666,7 +1540,7 @@ int main() {
                                 }
                             }
 
-                            //Caso o estudante nao esteja inscrito na UC
+                            /** Se o estudante nao estiver inscrito na UC escolhida ou nao for possivel fazer a troca devido ao conflito entre as turmas */
                             if(!flag){
                                 gh.clear();
                                 cout << " Nao esta inscrito nesta UC ou Turma errada. " << uc_caso10 << endl;
@@ -1690,14 +1564,12 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Listar pedidos de mudanca de turma
+            /** Listar pedidos de mudanca de turma */
             case 10:
                 choice = 10;
                 int choice10;
-                //cout pedidos de mudanca de turma
 
                 do{
-
                     gh.clear();
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << "||------------------ INFO SOBRE PEDIDOS -----------------||" << endl;
@@ -1713,13 +1585,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 3){
                         cout << endl;
@@ -1733,20 +1602,15 @@ int main() {
 
                         case 0:
                             choice10 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice10 = 1;
 
-                            /**
-                            * @brief Mostrar Pedido mais antigo
-                            */
+                            /** Mostrar Pedido mais antigo */
 
                             gh.clear();
-
 
                             if(gh.getPedidos().empty()){
                                 cout << " Nao existem pedidos" << endl;
@@ -1765,9 +1629,7 @@ int main() {
                         case 2:
                             choice10 = 2;
 
-                            /**
-                            * @brief Mostrar Pedido mais recente
-                            */
+                            /** Mostrar Pedido mais recente */
 
                             gh.clear();
 
@@ -1790,9 +1652,7 @@ int main() {
                         case 3:
                             choice10 = 3;
 
-                            /**
-                            * @brief Mostrar todos os pedidos
-                            */
+                            /** Mostrar todos os pedidos */
 
                             gh.clear();
 
@@ -1831,7 +1691,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Processar pedidos de mudanca de turma "FIFO"
+            /** Processar os pedidos de mudanca de turma */
             case 11:
                 choice = 11;
                 int choice12;
@@ -1839,7 +1699,6 @@ int main() {
                 do{
                     unsigned long long contador = gh.getPedidos().size();
                     int numero = 1;
-                    //cout primeiro pedido de mudanca de turma
 
                     gh.clear();
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
@@ -1854,13 +1713,10 @@ int main() {
                     cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    /**
-                     * @brief Verificacao da opcao escolhida pelo utilizador.
-                     */
                     cin >> opcao_menu;
 
                     /**
-                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    * Verificacao da opcao escolhida pelo utilizador.
                     */
                     while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
                         cout << endl;
@@ -1875,23 +1731,19 @@ int main() {
                     switch(choice12){
                         case 0:
                             choice12 = 0;
-                            /**
-                            * Deve voltar ao menu principal
-                            */
+                            /** Deve voltar ao menu principal */
                             break;
 
                         case 1:
                             choice12 = 1;
 
                             /**
-                             * Aceita pedido e remove da queue 
-                             * Mudar uc e turma do estudante
-                             *
-                             * @brief Processar pedidos
+                             * Aceita pedido e remove-o da queue
+                             * Altera a turma do estudante para a qual ele quer fazer a troca
                             */
 
 
-
+                            /** Processar os pedidos */
                             do{
                                 gh.clear();
 
@@ -1911,8 +1763,6 @@ int main() {
 
                                     gh.wait();
 
-
-                                    cout << "antes do if" << endl;
                                     if (GestaoHorario::sobreposicao(p_temp10, v_slots) || !GestaoHorario::equilibrio(p_temp10, v_vagas)) {
                                         gh.clear();
                                         gh.printPedido(p_temp10);
@@ -1921,8 +1771,6 @@ int main() {
                                     }
                                     else {
                                         gh.clear();
-
-
 
                                         for (auto& x: v_estudantes) {
                                             if (x.getEstudantePair().first == p_temp10.getEstudante().getEstudantePair().first) {

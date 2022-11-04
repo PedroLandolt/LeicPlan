@@ -1,4 +1,3 @@
-
 #include "../headers/Pedido.h"
 
 
@@ -33,7 +32,3 @@ void Pedido::setUCTurma(UCTurma turma) {
 void Pedido::setTurmaAtual(string turma_atual) {
     this->turma_atual = turma_atual;
 }
-
-
-
-

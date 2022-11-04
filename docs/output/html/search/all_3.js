@@ -7,7 +7,7 @@ var searchData=
   ['getestudantepair_4',['getEstudantePair',['../class_estudante.html#a26bf8cec56ff72055a8f4c75a287812b',1,'Estudante']]],
   ['gethora_5',['getHora',['../class_slot.html#a0bd8363b249becdafede78786d4b5a5e',1,'Slot']]],
   ['gethoraucturma_6',['getHoraUCTurma',['../class_t_horario.html#ab3accede9b5185d82f2adace0d13b56a',1,'THorario']]],
-  ['getpedidos_7',['getPedidos',['../class_gestao_horario.html#a2be647a1ae79ca340340679521fa1f2d',1,'GestaoHorario']]],
+  ['getpedidos_7',['getPedidos',['../class_gestao_horario.html#ab9f5a21e76e16b22a01b6014cdbed9b1',1,'GestaoHorario']]],
   ['gettipo_8',['getTipo',['../class_slot.html#a8ac0e3d14fbbbbbf29bd12c6083577ef',1,'Slot']]],
   ['getturmaatual_9',['getTurmaAtual',['../class_pedido.html#acd420c8f3f45207e94bb5ab5ccb1af49',1,'Pedido']]],
   ['getuc_10',['getUC',['../class_vaga.html#aeb27b5fd4d7e4859d644107a8f2b2205',1,'Vaga']]],

@@ -1,4 +1,26 @@
 var searchData=
 [
-  ['thorario_0',['THorario',['../class_t_horario.html#a3ce14b4ac6fe17778fe81c2cf95f9d74',1,'THorario::THorario()'],['../class_t_horario.html#a78a46c636463ba6d6d9e1340737050a6',1,'THorario::THorario(pair&lt; string, string &gt; ucturma, list&lt; Slot &gt; horaUCTurma)']]]
+  ['setdiasemana_0',['setDiaSemana',['../class_slot.html#a26b4ef16dc36610b6bf14807a00d0292',1,'Slot']]],
+  ['setestudante_1',['setEstudante',['../class_estudante.html#a6f1aee47b435990636034bbdd76bab9a',1,'Estudante::setEstudante()'],['../class_pedido.html#ab416e1f80a3adbe5ea035b7aaa0397df',1,'Pedido::setEstudante()']]],
+  ['setestudanteinscrito_2',['setEstudanteInscrito',['../class_estudante.html#aea1915b167f4d713ff059df3d9d0e844',1,'Estudante']]],
+  ['setestudantepair_3',['setEstudantePair',['../class_estudante.html#a5fc309397577538632bb8cca104e99d7',1,'Estudante']]],
+  ['sethora_4',['setHora',['../class_slot.html#a845575d12a6f45f43f7aafca452c9ab7',1,'Slot']]],
+  ['sethoraucturma_5',['setHoraUCTurma',['../class_t_horario.html#adc831796a3a6ff9a4af2de89e69baf2e',1,'THorario']]],
+  ['settipo_6',['setTipo',['../class_slot.html#af925ccfbd38ed31fe4ed800e2ff84120',1,'Slot']]],
+  ['setturmaatual_7',['setTurmaAtual',['../class_pedido.html#a417cb0433aefa501c333cfde59dca305',1,'Pedido']]],
+  ['setuc_8',['setUC',['../class_vaga.html#a62437ded47a18e16c72dfaa78f7f0ea9',1,'Vaga']]],
+  ['setucturma_9',['setUcTurma',['../class_slot.html#ad49ab0551ea100031efecb289dc1ecac',1,'Slot::setUcTurma()'],['../class_t_horario.html#a8a8bc9c4e74008a92ceb6bcbde74be08',1,'THorario::setUcTurma()']]],
+  ['setucturma_10',['setUCTurma',['../class_pedido.html#ac79612b5b89c482457618f672d3e20bd',1,'Pedido::setUCTurma()'],['../class_u_c_turma.html#a91c4a3bb604631d7adeb80f5544f60cb',1,'UCTurma::setUCTurma()']]],
+  ['setvagas_11',['setVagas',['../class_vaga.html#a966083b26004205de1c9260b6825c211',1,'Vaga']]],
+  ['slot_12',['Slot',['../class_slot.html#a92a49d49328f84e7f8eb6c709d80b33c',1,'Slot::Slot()'],['../class_slot.html#afe39f0af4bf958ad74319fc5e6cafaf2',1,'Slot::Slot(string diaSemana, pair&lt; float, float &gt; hora, string tipo)'],['../class_slot.html#a6dbd1671fb0b61ef6d0e673f960e8f8a',1,'Slot::Slot(string diaSemana, pair&lt; float, float &gt; hora, string tipo, pair&lt; string, string &gt; ucturma)']]],
+  ['sobreposicao_13',['sobreposicao',['../class_gestao_horario.html#a6d93f6f5e148b9759b020f6968ae63d5',1,'GestaoHorario']]],
+  ['sortnomecrescente_14',['sortNomeCrescente',['../class_sort.html#a4050b4df6176a13b5d50b45d4a8bfb36',1,'Sort']]],
+  ['sortnomedecrescente_15',['sortNomeDecrescente',['../class_sort.html#ab2ffcc315dbbade3a860c6b1a4c6abea',1,'Sort']]],
+  ['sortpaircrescente_16',['sortPairCrescente',['../class_sort.html#a4f860e82faf23a572cfa3244dd73d0ae',1,'Sort']]],
+  ['sortpairdecrescente_17',['sortPairDecrescente',['../class_sort.html#ae285b06a9ec1da28357205df0b018449',1,'Sort']]],
+  ['sortpairnomecrescente_18',['sortPairNomeCrescente',['../class_sort.html#acb0c1fe3d8f185c7538818f08fa3fa2b',1,'Sort']]],
+  ['sortpairnomedecrescente_19',['sortPairNomeDecrescente',['../class_sort.html#a86baf6ac76bde5117adf29204bbaa06e',1,'Sort']]],
+  ['sortslots_20',['sortSlots',['../class_slot.html#ac2844327d3197fc6b6d437a5c1122134',1,'Slot']]],
+  ['sortupcrescente_21',['sortUPCrescente',['../class_sort.html#a32769a95020dafea59b473c27c68b773',1,'Sort']]],
+  ['sortupdecrescente_22',['sortUPDecrescente',['../class_sort.html#a5390e07918f0b30ae3ec647aaaaffa66',1,'Sort']]]
 ];

@@ -1,4 +1,3 @@
-
 #include "../headers/GestaoHorario.h"
 
 
@@ -9,7 +8,7 @@ void GestaoHorario::lerFichEst(vector<Estudante> &estudantes) {
     file.open("../data/students_classes.csv");
     string line;
 
-    getline(file, line); //para ignorar a primeira linha
+    getline(file, line);    //ignora primeira linha
 
     Estudante estudanteAtual;
 
@@ -51,7 +50,7 @@ void GestaoHorario::lerFichHorario(vector<THorario> &horarios) {
     file.open("../data/classes.csv");
     string line;
 
-    getline(file, line); //para ignorar a primeira linha
+    getline(file, line);      //ignora a primeira linha
 
     THorario horarioAtual;
 
@@ -107,7 +106,7 @@ void GestaoHorario::lerFichUCTurma(vector<UCTurma> &ucturma) {
     file.open("../data/classes_per_uc.csv");
     string line;
 
-    getline(file, line); //para ignorar a primeira linha
+    getline(file, line);     //ignora a primeira linha
 
     while (getline(file, line)) {
         stringstream ss(line);
@@ -130,7 +129,7 @@ void GestaoHorario::lerFichSlot(vector<Slot> &slot) {
         file.open("../data/classes.csv");
         string line;
 
-        getline(file, line); //para ignorar a primeira linha
+        getline(file, line);     //ignora a primeira linha
 
         while (getline(file, line)) {
             stringstream ss(line);
@@ -194,7 +193,7 @@ void GestaoHorario::ajustarVagas(vector<Vaga> &vagas) {
     file.open("../data/students_classes.csv");
     string line;
 
-    getline(file, line); //para ignorar a primeira linha
+    getline(file, line);     //ignora a primeira linha
 
     while (getline(file, line)) {
         stringstream ss(line);
@@ -205,7 +204,6 @@ void GestaoHorario::ajustarVagas(vector<Vaga> &vagas) {
         getline(ss, null2, ',');
         getline(ss, uc, ',');
         getline(ss, turma, ',');
-        //generate turma
 
         pair<string, string> ucturma = make_pair(uc, turma);
 
@@ -252,7 +250,7 @@ void GestaoHorario::printPedido(Pedido prt_pedido) {
 
     cout << " UP: " << prt_pedido.getEstudante().getEstudantePair().first  << " | Nome: " << prt_pedido.getEstudante().getEstudantePair().second << endl;
 
-    cout << " Trocar da turma " /*turma atual*/ << prt_pedido.getTurmaAtual() << " -> para a turma " /*qual quer mudar */ << prt_pedido.getUCTurma().getUCTurma().second << endl;
+    cout << " Trocar da turma "  << prt_pedido.getTurmaAtual() << " -> para a turma "  << prt_pedido.getUCTurma().getUCTurma().second << endl;
     cout << " na UC: " << prt_pedido.getUCTurma().getUCTurma().first << endl;
     cout << endl;
 }

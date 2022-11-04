@@ -1,4 +1,3 @@
-
 #include "../headers/Vaga.h"
 
 

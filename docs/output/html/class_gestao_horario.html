@@ -97,8 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a778b7d4ea08b18829db331f4d0379ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1af55dfc787a24da96339cde4e81f067"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a1af55dfc787a24da96339cde4e81f067">wait</a> ()</td></tr>
 <tr class="separator:a1af55dfc787a24da96339cde4e81f067"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be647a1ae79ca340340679521fa1f2d"><td class="memItemLeft" align="right" valign="top">queue&lt; <a class="el" href="class_pedido.html">Pedido</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a2be647a1ae79ca340340679521fa1f2d">getPedidos</a> ()</td></tr>
-<tr class="separator:a2be647a1ae79ca340340679521fa1f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f5a21e76e16b22a01b6014cdbed9b1"><td class="memItemLeft" align="right" valign="top">queue&lt; <a class="el" href="class_pedido.html">Pedido</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#ab9f5a21e76e16b22a01b6014cdbed9b1">getPedidos</a> ()</td></tr>
+<tr class="separator:ab9f5a21e76e16b22a01b6014cdbed9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59af1b3ec48838599e58d3930c459a1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a59af1b3ec48838599e58d3930c459a1c">guardar</a> (<a class="el" href="class_pedido.html">Pedido</a> pedido)</td></tr>
 <tr class="separator:a59af1b3ec48838599e58d3930c459a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0024c1572ae90bb563597d0e93a8c048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a0024c1572ae90bb563597d0e93a8c048">printPedido</a> (<a class="el" href="class_pedido.html">Pedido</a> prt_pedido)</td></tr>
@@ -106,8 +106,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a35da2f25ca474aa04246fdd30b8f879c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a35da2f25ca474aa04246fdd30b8f879c">sobreposicao</a> (<a class="el" href="class_pedido.html">Pedido</a> pedido, vector&lt; <a class="el" href="class_slot.html">Slot</a> &gt; slots)</td></tr>
-<tr class="separator:a35da2f25ca474aa04246fdd30b8f879c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d93f6f5e148b9759b020f6968ae63d5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a6d93f6f5e148b9759b020f6968ae63d5">sobreposicao</a> (<a class="el" href="class_pedido.html">Pedido</a> pedido, const vector&lt; <a class="el" href="class_slot.html">Slot</a> &gt; &amp;slots)</td></tr>
+<tr class="separator:a6d93f6f5e148b9759b020f6968ae63d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b79dc3cf9406e15ef7d684d6a94196e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#a0b79dc3cf9406e15ef7d684d6a94196e">equilibrio</a> (<a class="el" href="class_pedido.html">Pedido</a> pedido, vector&lt; <a class="el" href="class_vaga.html">Vaga</a> &gt; vagas)</td></tr>
 <tr class="separator:a0b79dc3cf9406e15ef7d684d6a94196e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab55657f664681f95d27d5457fa03e99b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gestao_horario.html#ab55657f664681f95d27d5457fa03e99b">checkInteiro</a> (const string &amp;x)</td></tr>
@@ -383,14 +383,14 @@ False se causar desiquilibrio </dd></dl>
 
 </div>
 </div>
-<a id="a2be647a1ae79ca340340679521fa1f2d" name="a2be647a1ae79ca340340679521fa1f2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2be647a1ae79ca340340679521fa1f2d">&#9670;&#160;</a></span>getPedidos()</h2>
+<a id="ab9f5a21e76e16b22a01b6014cdbed9b1" name="ab9f5a21e76e16b22a01b6014cdbed9b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f5a21e76e16b22a01b6014cdbed9b1">&#9670;&#160;</a></span>getPedidos()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">queue&lt; <a class="el" href="class_pedido.html">Pedido</a> &gt; GestaoHorario::getPedidos </td>
+          <td class="memname">queue&lt; <a class="el" href="class_pedido.html">Pedido</a> &gt; &amp; GestaoHorario::getPedidos </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -569,8 +569,8 @@ False se causar desiquilibrio </dd></dl>
 
 </div>
 </div>
-<a id="a35da2f25ca474aa04246fdd30b8f879c" name="a35da2f25ca474aa04246fdd30b8f879c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35da2f25ca474aa04246fdd30b8f879c">&#9670;&#160;</a></span>sobreposicao()</h2>
+<a id="a6d93f6f5e148b9759b020f6968ae63d5" name="a6d93f6f5e148b9759b020f6968ae63d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d93f6f5e148b9759b020f6968ae63d5">&#9670;&#160;</a></span>sobreposicao()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -587,7 +587,7 @@ False se causar desiquilibrio </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_slot.html">Slot</a> &gt;&#160;</td>
+          <td class="paramtype">const vector&lt; <a class="el" href="class_slot.html">Slot</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>slots</em>&#160;</td>
         </tr>
         <tr>

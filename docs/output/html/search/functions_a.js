@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vaga_0',['Vaga',['../class_vaga.html#a87d53d805c681ae0b2bacf4e5a32c94a',1,'Vaga::Vaga()'],['../class_vaga.html#a35705ed453108355aeff42590d29a112',1,'Vaga::Vaga(string uc, list&lt; pair&lt; string, int &gt; &gt; vagas)']]]
+  ['ucturma_0',['UCTurma',['../class_u_c_turma.html#ad61e9967ae72f1065c2b2b4c4ef09c7a',1,'UCTurma::UCTurma()'],['../class_u_c_turma.html#a3cfc6973e3f579609c90d646d5990185',1,'UCTurma::UCTurma(pair&lt; string, string &gt; ucturma)']]]
 ];

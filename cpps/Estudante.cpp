@@ -1,4 +1,3 @@
-
 #include "../headers/Estudante.h"
 
 
@@ -37,4 +36,3 @@ auto Estudante::getEstudante(){
 bool Estudante::operator<(const Estudante &e) const {
     return estudante.first < e.estudante.first;
 }
-
