@@ -311,7 +311,7 @@ bool GestaoHorario::sobreposicao(Pedido pedido, vector<Slot> slots) {
 
     for(int i = 0; i < slots_temp.size(); i++){
         if(slots_temp[i].getDiaSemana() == slots_temp[i+1].getDiaSemana()){
-            if(slots_temp[i].getHora().first + slots_temp[i].getHora().second > slots_temp[i+1].getHora().first){
+            if(slots_temp[i].getHora().first + slots_temp[i].getHora().second > slots_temp[i+1].getHora().first && slots_temp[i].getHora().first < slots_temp[i+1].getHora().first){
                 if(slots_temp[i].getTipo() != "T" && slots_temp[i+1].getTipo() != "T"){
                     return true;
                 }
@@ -323,16 +323,31 @@ bool GestaoHorario::sobreposicao(Pedido pedido, vector<Slot> slots) {
 
 bool GestaoHorario::equilibrio(Pedido pedido, vector<Vaga> vagas) {
 
+        vector<Vaga> vagas_temp = vagas;
+
         UCTurma ucturma = pedido.getUCTurma();
 
         int min = INT_MAX;
-        int diff = 0;
+
+        int max = INT_MIN;
 
 
-        for(auto x : vagas){
+        string turma_atual_str = pedido.getTurmaAtual();
+
+        for(auto x : vagas_temp){
             if(x.getUC() == ucturma.getUCTurma().first){
                 for(const auto& y : x.getVagas()){
-                    if(y.second < min){
+                    if(y.first == turma_atual_str){
+                        if(y.second + 1 < min){
+                            min = y.second + 1;
+                        }
+                    }
+                    else if(y.first == ucturma.getUCTurma().second){
+                        if(y.second - 1 < min){
+                            min = y.second - 1;
+                        }
+                    }
+                    else if(y.second < min){
                         min = y.second;
                     }
                 }
@@ -340,24 +355,36 @@ bool GestaoHorario::equilibrio(Pedido pedido, vector<Vaga> vagas) {
         }
 
 
-        for(auto x : vagas){
+        for(auto x : vagas_temp){
             if(x.getUC() == ucturma.getUCTurma().first){
                 for(const auto& y : x.getVagas()){
-                    if(y.first == ucturma.getUCTurma().second){
-                        if(y.second - min < 4){
-                            return true;
+                    if(y.first == turma_atual_str){
+                        if(y.second + 1 > max){
+                            min = y.second + 1;
                         }
+                    }
+                    else if(y.first == ucturma.getUCTurma().second){
+                        if(y.second - 1 > max){
+                            max = y.second - 1;
+                        }
+                    }
+                    else if(y.second > max){
+                        min = y.second;
                     }
                 }
             }
         }
-        return false;
+
+        if(max - min >= 4){
+            return false;
+        }
+        return true;
 }
 
 bool GestaoHorario::checkInteiro(const string& x) {
 
-    for(char i : x){
-        if(!isdigit(i)){
+    for(auto y : x){
+        if(!isdigit(y)){
             return false;
         }
     }
@@ -366,6 +393,9 @@ bool GestaoHorario::checkInteiro(const string& x) {
 
 bool GestaoHorario::checkUC(const string& x, const vector<UCTurma>& ucts) {
 
+    if(x.size() > 8){
+        return false;
+    }
 
     for(auto a : x){
         if(a == ' '){
@@ -383,6 +413,10 @@ bool GestaoHorario::checkUC(const string& x, const vector<UCTurma>& ucts) {
 
 bool GestaoHorario::checkTurma(const string& x, const vector<UCTurma>& ucts) {
 
+    if(x.size() > 7){
+        return false;
+    }
+
     for(auto a : x){
         if(a == ' '){
             return false;
@@ -397,3 +431,29 @@ bool GestaoHorario::checkTurma(const string& x, const vector<UCTurma>& ucts) {
     return false;
 }
 
+bool GestaoHorario::checkEstudante(const string& x, const vector<Estudante>& estudantes) {
+
+
+    if(x.size() > 9){
+        return false;
+    }
+
+    for(char p : x){
+        if(!isdigit(p)){
+            return false;
+        }
+    }
+
+    for(char a : x){
+        if(a == ' '){
+            return false;
+        }
+    }
+
+    for(auto i : estudantes){
+        if(i.getEstudantePair().first == stol(x)){
+            return true;
+        }
+    }
+    return false;
+}

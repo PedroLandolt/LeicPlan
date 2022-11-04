@@ -101,7 +101,7 @@ int main() {
 
     //Varaveis para o menu
 
-    string opcao, opcao1, opcao2;
+    string opcao, opcao1, opcao2, opcao3, opcao_menu;
     int choice;
     string ano_caso5;
     int id_estudante_caso6, id_estudante_caso10;
@@ -151,18 +151,18 @@ int main() {
         /**
          * @brief Leitura da opcao escolhida pelo utilizador.
          */
-        cin >> opcao;
+        cin >> opcao_menu;
 
         /**
          * @brief Verificacao da opcao escolhida pelo utilizador.
          */
-        while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 11){
+        while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 11){
             cout << endl;
             cout << " Opcao invalida! Escolha uma opcao valida: ";
-            cin >> opcao;
+            cin >> opcao_menu;
             cout << endl;
         }
-        choice = stoi(opcao);
+        choice = stoi(opcao_menu);
 
         cout << endl;
 
@@ -217,20 +217,20 @@ int main() {
                     /**
                      * @brief Leitura da opcao escolhida pelo utilizador.
                      */
-                    cin >> opcao;
+                    cin >> opcao_menu;
 
                     /**
                      * @brief Verificacao da opcao escolhida pelo utilizador.
                      */
 
-                    while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 4) {
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 4) {
                         cout << endl;
                         cout << " Opcao invalida! Escolha uma opcao valida: ";
-                        cin >> opcao;
+                        cin >> opcao_menu;
                         cout << endl;
                     }
                     cout << endl;
-                    choice1 = stoi(opcao);
+                    choice1 = stoi(opcao_menu);
 
                     switch(choice1){
                         case 0:
@@ -410,17 +410,17 @@ int main() {
                         /**
                          * @brief Verificacao da opcao escolhida pelo utilizador.
                          */
-                        cin >> opcao;
+                        cin >> opcao_menu;
 
                         /**
                         * @brief Verificacao da opcao escolhida pelo utilizador.
                         */
-                        while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 5){
+                        while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
                             cout << " Opcao invalida! Escolha uma opcao valida: ";
-                            cin >> opcao;
+                            cin >> opcao_menu;
                         }
-                        choice2 = stoi(opcao);
+                        choice2 = stoi(opcao_menu);
                         cout << endl;
                     }
 
@@ -621,17 +621,17 @@ int main() {
                         /**
                          * @brief Verificacao da opcao escolhida pelo utilizador.
                          */
-                        cin >> opcao;
+                        cin >> opcao_menu;
 
                         /**
                         * @brief Verificacao da opcao escolhida pelo utilizador.
                         */
-                        while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 5){
+                        while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
                             cout << " Opcao invalida! Escolha uma opcao valida: ";
-                            cin >> opcao;
+                            cin >> opcao_menu;
                         }
-                        choice3 = stoi(opcao);
+                        choice3 = stoi(opcao_menu);
                         cout << endl;
                     }
 
@@ -767,6 +767,7 @@ int main() {
                      * @brief Verificacao da opcao escolhida pelo utilizador.
                     */
 
+                    //Verificar se a UC existe.
                     while(!GestaoHorario::checkUC(opcao1, v_ucturma)) {
                         cout << endl;
                         cout << " UC invalida! Escolha uma UC valida: ";
@@ -775,6 +776,7 @@ int main() {
                     }
                     uc_caso4 = opcao1;
 
+                    //Verificar se a turma existe.
                     while(!GestaoHorario::checkTurma(opcao2, v_ucturma)) {
                         cout << endl;
                         cout << " Turma invalida! Escolha uma turma valida: ";
@@ -830,17 +832,17 @@ int main() {
                         /**
                          * @brief Verificacao da opcao escolhida pelo utilizador.
                          */
-                        cin >> opcao;
+                        cin >> opcao_menu;
 
                         /**
                         * @brief Verificacao da opcao escolhida pelo utilizador.
                         */
-                        while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 7){
+                        while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 7){
                             cout << endl;
                             cout << " Opcao invalida! Escolha uma opcao valida: ";
-                            cin >> opcao;
+                            cin >> opcao_menu;
                         }
-                        choice4 = stoi(opcao);
+                        choice4 = stoi(opcao_menu);
                         cout << endl;
                     }
 
@@ -900,7 +902,7 @@ int main() {
 
                             gh.clear();
 
-                            //Ordenar estudantes por nome de forma A-Z.
+                            //Ordenar estudantes por nome por nome de A-Z.
                             sorts.sortPairNomeCrescente(v_estudante_caso4);
 
                             //Imprimir estudantes de forma ordenada A-Z.
@@ -998,9 +1000,10 @@ int main() {
 
                 do{
 
+                    //Verificar se o ano introduzido e valido
                     while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 1 || stoi(opcao) > 3){
                         cout << endl;
-                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cout << " Opcao invalida! Ano inexistente. Escolha um ano valido: ";
                         cin >> opcao;
                     }
                     ano_caso5 = opcao;
@@ -1058,17 +1061,17 @@ int main() {
                         /**
                          * @brief Verificacao da opcao escolhida pelo utilizador.
                          */
-                        cin >> opcao;
+                        cin >> opcao_menu;
 
                         /**
                         * @brief Verificacao da opcao escolhida pelo utilizador.
                         */
-                        while(!GestaoHorario::checkInteiro(opcao) || stoi(opcao) < 0 || stoi(opcao) > 5){
+                        while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 5){
                             cout << endl;
                             cout << " Opcao invalida! Escolha uma opcao valida: ";
-                            cin >> opcao;
+                            cin >> opcao_menu;
                         }
-                        choice5 = stoi(opcao);
+                        choice5 = stoi(opcao_menu);
                         cout << endl;
                     }
 
@@ -1196,6 +1199,13 @@ int main() {
 
                 do{
 
+                    //Verificar se o estudante existe
+                    while(!GestaoHorario::checkEstudante(opcao, v_estudantes)){
+                        cout << endl;
+                        cout << " Opcao invalida! Estudante inexistente: ";
+                        cin >> opcao;
+                    }
+                    id_estudante_caso6 = stoi(opcao);
 
 
                     //Lista as disciplinas do estudante
@@ -1203,14 +1213,12 @@ int main() {
                     for(auto p : s_estudantes){
                         if(p->getEstudantePair().first == id_estudante_caso6){
                             l_ucturma_caso6 = p->getEstudanteInscrito();
-                            cout << " Estudante: " << p->getEstudantePair().second << endl;
+                            nome_estudante_caso6 = p->getEstudantePair().second;
                         }
                     }
-
-
+                    //Lista o horario do estudante
                     vector<Slot> slot_ucturma_caso6;
                     Slot slot_caso6;
-
                     for(auto p : l_ucturma_caso6){
                         for(auto i : v_slots){
                             if(p.getUCTurma() == i.getUcTurma()){
@@ -1219,16 +1227,51 @@ int main() {
                         }
                     }
 
-                    slot_caso6.printSlot(slot_ucturma_caso6);
+                    //print do horario do estudante
+                    if(slot_ucturma_caso6.empty()){
+                        cout << " Nao tem disciplinas inscritas neste estudante" << endl;
+                        gh.wait();
+                    }
+                    else {
+                        gh.clear();
+                        cout << "UP: " << id_estudante_caso6 << " | Nome: " << nome_estudante_caso6 << endl;
+                        cout << endl;
+                        slot_caso6.printSlot(slot_ucturma_caso6);
+                        gh.wait();
+                    }
 
-                    //cout horario estudante
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Escolher outro estudante" << endl;
+
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||----------------- HORARIO DO ESTUDANTE ----------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   UP Escolhido -> " << id_estudante_caso6 << "                           ||" << endl;
+                    cout << "||   Nome -> " << nome_estudante_caso6 << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Escolher outro estudante                        ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    cin >> choice6;
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
+
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice6 = stoi(opcao_menu);
+                    cout << endl;
 
                     switch(choice6){
                         case 0:
@@ -1246,8 +1289,8 @@ int main() {
                             */
                             cout << endl;
                             cout << " UP: ";
-                            cin >> id_estudante_caso6;
-
+                            cin >> opcao;
+                            cout << endl;
 
                             break;
 
@@ -1259,35 +1302,82 @@ int main() {
 
                 break;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             //Mostrar horario de uma turma
             case 7:
                 choice = 7;
                 int choice7;
 
                 cout << " Turma: ";
-                cin >> turma_caso7;
+                cin >> opcao;
 
                 do{
 
+                    //Verificar se a turma existe
+                    while(!GestaoHorario::checkTurma(opcao, v_ucturma)){
+                        cout << endl;
+                        cout << " Opcao invalida! Turma inexistente. Insira uma turma valida: ";
+                        cin >> opcao;
+                    }
+                    turma_caso7 = opcao;
+
+                    //Lista o horario da turma
                     vector<Slot> slot_ucturma_caso7;
                     Slot slot_caso7;
-
                     for(auto p : v_slots){
                         if(p.getUcTurma().second == turma_caso7){
                             slot_ucturma_caso7.push_back(p);
                         }
                     }
 
-                    slot_caso7.printSlot(slot_ucturma_caso7);
+                    //Print do horario da turma
+                    if(slot_ucturma_caso7.empty()){
+                        cout << " Nao tem disciplinas inscritas nesta turma" << endl;
+                        gh.wait();
+                    }
+                    else {
+                        gh.clear();
+                        cout << "Turma: " << turma_caso7 << endl;
+                        cout << endl;
+                        slot_caso7.printSlot(slot_ucturma_caso7);
+                        gh.wait();
+                    }
 
-                    //cout horario turma
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Escolher outra turma" << endl;
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||------------------- HORARIO DA TURMA ------------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   Turma escolhida -> " << turma_caso3 << "                          ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Escolher outro estudante                        ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    cin >> choice7;
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
+
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice7 = stoi(opcao_menu);
+                    cout << endl;
 
                     switch(choice7){
                         case 0:
@@ -1305,8 +1395,8 @@ int main() {
                             */
 
                             cout << " Turma: ";
-                            cin >> turma_caso7;
-
+                            cin >> opcao;
+                            cout << endl;
                             break;
 
                         default:
@@ -1317,15 +1407,30 @@ int main() {
                 
                 break;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             //Mostrar horario de uma UC
             case 8:
                 choice = 8;
                 int choice8;
 
                 cout << " UC: ";
-                cin >> uc_caso8;
+                cin >> opcao;
 
                 do{
+
+                    //Verificar se a UC existe
+                    while(!GestaoHorario::checkUC(uc_caso8, v_ucturma)){
+                        cout << endl;
+                        cout << " Opcao invalida! UC inexistente. Insira uma turma valida: ";
+                        cin >> opcao;
+                    }
+                    uc_caso8 = opcao;
+
                     //cout horario UC
                     vector<Slot> slot_ucturma_caso8;
                     Slot slot_caso8;
@@ -1336,16 +1441,49 @@ int main() {
                         }
                     }
 
-                    slot_caso8.printSlot(slot_ucturma_caso8);
+                    //Print do horario da uc
+                    if(slot_ucturma_caso8.empty()){
+                        cout << " Nao tem disciplinas inscritas nesta UC" << endl;
+                        gh.wait();
+                    }
+                    else {
+                        gh.clear();
+                        cout << "UC: " << uc_caso8 << endl;
+                        cout << endl;
+                        slot_caso8.printSlot(slot_ucturma_caso8);
+                        gh.wait();
+                    }
 
-
-                    cout << " Escolha uma opcao: " << endl;
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||-------------------- HORARIO DA UC --------------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   UC escolhida -> " << uc_caso8 << "                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Escolher outro estudante                        ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Escolher outra UC" << endl;
-                    cout << endl;
 
-                    cin >> choice8;
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
+
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice8 = stoi(opcao_menu);
+                    cout << endl;
 
                     switch(choice8){
                         case 0:
@@ -1363,7 +1501,8 @@ int main() {
                             */
 
                             cout << " UC: ";
-                            cin >> uc_caso8;
+                            cin >> opcao;
+                            cout << endl;
 
                             break;
 
@@ -1376,20 +1515,48 @@ int main() {
                 
                 break;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             //Fazer pedido de mudanca de turma
             case 9:
                 choice = 9;
                 int choice9;
 
                 do{
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Fazer um pedido" << endl;
+
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||-------------- PEDIDO DE MUDANCA DE TURMA -------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Fazer Pedido                                    ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
 
-                    cin >> choice9;
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice9 = stoi(opcao_menu);
+                    cout << endl;
+
                     Estudante e_caso10;
                     bool flag;
 
@@ -1433,52 +1600,92 @@ int main() {
 
                             /////////////////////////////////////////////
                             gh.clear();
-                            cout << " Introduza o nome da UC que quer fazer mudança de turma: ";
-                            cin >> uc_caso10;
+                            cout << " Introduza o codigo da UC a que quer mudar de turma: ";
+                            cin >> opcao1;
 
-                            cout << " Introduza o nome da turma que quer fazer mudança de turma: ";
-                            cin >> turma_caso_atual10;
+                            cout << " Introduza o codigo da turma em que se encontra: ";
+                            cin >> opcao2;
 
-                            cout << " Introduza o nome da turma para qual quer mudar: ";
-                            cin >> turma_caso10;
+                            cout << " Introduza o codigo da turma para qual quer mudar: ";
+                            cin >> opcao3;
+
+                            //confirmar se a UC existe
+                            while(!GestaoHorario::checkUC(opcao1, v_ucturma)) {
+                                cout << endl;
+                                cout << " UC invalida! Escolha uma UC valida: ";
+                                cin >> opcao1;
+                                cout << endl;
+                            }
+                            uc_caso10 = opcao1;
+
+                            //Verificar se a turma em que se encontra existe.
+                            while(!GestaoHorario::checkTurma(opcao2, v_ucturma)) {
+                                cout << endl;
+                                cout << " Turma invalida! Escolha uma turma valida: ";
+                                cin >> opcao2;
+                                cout << endl;
+                            }
+                            turma_caso_atual10 = opcao2;
+
+                            //Verificar se a turma para qual quer mudar existe.
+                            while(!GestaoHorario::checkTurma(opcao3, v_ucturma)) {
+                                cout << endl;
+                                cout << " Turma invalida! Escolha uma turma valida: ";
+                                cin >> opcao3;
+                                cout << endl;
+                            }
+                            turma_caso10 = opcao3;
 
                             uc_turma_caso10 = make_pair(uc_caso10, turma_caso10);
 
-
                             flag = false;
 
+                            //Guarda o pedido caso o estudante nao esteja inscrito na turma para qual quer mudar
                             for (auto p: e_caso10.getEstudanteInscrito()) {
 
                                 if (p.getUCTurma() == uc_turma_caso10) {
+                                    gh.clear();
                                     cout << " Ja esta inscrito nessa turma" << endl;
+                                    gh.wait();
                                     flag = true;
                                     break;
                                 } else if (p.getUCTurma().first == uc_caso10 &&
                                            p.getUCTurma().second != turma_caso10 &&
                                            p.getUCTurma().second[0] == turma_caso10[0]) {
+                                    gh.clear();
                                     UCTurma uc_turma_caso10_tmp(uc_turma_caso10);
                                     Pedido pedido_caso10(e_caso10, uc_turma_caso10, turma_caso_atual10);
                                     gh.guardar(pedido_caso10);
                                     cout << " Pedido de mudanca de turma enviado" << endl;
                                     flag = true;
+                                    gh.wait();
                                     break;
                                 }
                             }
 
+                            //Caso o estudante nao esteja inscrito na UC
                             if(!flag){
-                                cout << " Nao esta inscrito nessa UC ou Turma invalida" << endl;
+                                gh.clear();
+                                cout << " Nao esta inscrito nesta UC ou Turma errada. " << uc_caso10 << endl;
+                                gh.wait();
                             }
                             break;
 
                         default:
 
                             cout << " Opcao invalida" << endl;
+                            gh.wait();
                             break;
                     }
                 } while (choice9 != 0);
 
                 break;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //Listar pedidos de mudanca de turma
             case 10:
@@ -1488,16 +1695,36 @@ int main() {
 
                 do{
 
-                    cout << " Escolha uma opcao: " << endl;
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Mostrar Pedido mais antigo" << endl;
-                    cout << " 2 - Mostrar Pedido mais recente" << endl;
-                    cout << " 3 - Mostrar todos os pedidos" << endl;
-                    //cout << " talvez - Mostrar pedidos de um estudante" << endl;
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||------------------ INFO SOBRE PEDIDOS -----------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Mostrar Pedido mais antigo                      ||" << endl;
+                    cout << "||   2 - Mostrar Pedido mais recente                     ||" << endl;
+                    cout << "||   3 - Mostrar todos os pedidos                        ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    cin >> choice10;
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
+
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 3){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice10 = stoi(opcao_menu);
+                    cout << endl;
 
                     switch (choice10) {
 
@@ -1528,6 +1755,8 @@ int main() {
                                 gh.printPedido(p_temp10);
                             }
 
+                            gh.wait();
+
                             break;
 
                         case 2:
@@ -1551,6 +1780,8 @@ int main() {
                                 gh.printPedido(p_temp10);
                             }
 
+                            gh.wait();
+
                             break;
 
                         case 3:
@@ -1570,13 +1801,15 @@ int main() {
                                 int i = 1;
                                 while(!pedidos_caso10.empty()){
                                     p_temp10 = pedidos_caso10.front();
-                                    cout << " Pedido -: " << i << ": " << endl;
+                                    cout << " Pedido -> " << i << endl;
                                     cout << endl;
                                     gh.printPedido(p_temp10);
                                     pedidos_caso10.pop();
                                     i++;
                                 }
                             }
+
+                            gh.wait();
 
                             break;
 
@@ -1589,6 +1822,12 @@ int main() {
 
                 break;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             //Processar pedidos de mudanca de turma "FIFO"
             case 11:
                 choice = 11;
@@ -1596,7 +1835,7 @@ int main() {
 
                 do{
                     unsigned long long contador = gh.getPedidos().size();
-                    int numero = 0;
+                    int numero = 1;
                     //cout primeiro pedido de mudanca de turma
 
                     cout << endl;
@@ -1605,6 +1844,8 @@ int main() {
                     cout << endl;
 
                     cin >> choice12;
+
+                    bool flag2 = true;
 
                     switch(choice12){
                         case 0:
@@ -1632,10 +1873,11 @@ int main() {
                                 if(gh.getPedidos().empty()){
                                     cout << " Nao existem pedidos" << endl;
                                     gh.wait();
+                                    flag2 = false;
                                 }
                                 else {
                                     p_temp10 = gh.getPedidos().front();
-
+                                    gh.getPedidos().pop();
                                     gh.printPedido(p_temp10);
 
                                     cout << " Pedido numero: " << numero << " | Faltam: " << contador << endl;
@@ -1644,90 +1886,39 @@ int main() {
 
                                     gh.wait();
 
+
+                                    cout << "antes do if" << endl;
                                     if (!GestaoHorario::sobreposicao(p_temp10, v_slots) || !GestaoHorario::equilibrio(p_temp10, v_vagas)) {
-                                        gh.getPedidos().pop();
                                         gh.printPedido(p_temp10);
-                                        cout << " Nao foi possivel processar o pedido" << endl;
+                                        cout << " Pedido nao processado devido a sobreposicao ou desequilibrio de Turmas." << endl;
+                                        gh.wait();
                                     }
-
                                     else {
-
-                                        gh.getPedidos().pop();
-                                        gh.printPedido(p_temp10);
-
-                                        int choice11_1;
-
-                                        do {
-                                            cout << " Escolha uma opcao: " << endl;
-                                            cout << endl;
-                                            cout << " 1 - Aceitar Pedido" << endl;
-                                            cout << " 2 - Recusar Pedido" << endl;
-                                            cout << endl;
-
-                                            switch (choice11_1) {
-                                                case 2:
-                                                    choice11_1 = 2;
-                                                    /**
-                                                     * Recusa pedido e remove da queue
-                                                     *
-                                                     * @brief Recusar pedido
-                                                     */
-
-                                                    gh.clear();
-
-                                                    gh.printPedido(p_temp10);
-
-                                                    cout << " Pedido recusado" << endl;
-                                                    gh.wait();
-                                                    break;
-
-                                                case 1:
-                                                    choice11_1 = 1;
-                                                    /**
-                                                     * Aceita pedido e remove da queue
-                                                     * Mudar uc e turma do estudante
-                                                     *
-                                                     * @brief Processar pedidos
-                                                    */
-
-                                                    gh.clear();
-
-                                                    temp_est = p_temp10.getEstudante();
-
-                                                    for (auto x: s_estudantes) {
-                                                        if (x->getEstudantePair().first ==
-                                                            temp_est.getEstudantePair().first) {
-                                                            for (auto &y: x->getEstudanteInscrito()) {
-                                                                if (y.getUCTurma().first ==
-                                                                    p_temp10.getUCTurma().getUCTurma().first) {
-                                                                    pair<string, string> temp_pair = make_pair(
-                                                                            p_temp10.getUCTurma().getUCTurma().second,
-                                                                            p_temp10.getUCTurma().getUCTurma().first);
-                                                                    y.setUCTurma(temp_pair);
-                                                                    gh.getPedidos().pop();
-                                                                    gh.printPedido(p_temp10);
-                                                                    cout << " Pedido aceite" << endl;
-                                                                    gh.wait();
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }
+                                        cout << "depois do if" << endl;
+                                        for (auto x: s_estudantes) {
+                                            if (x->getEstudantePair().first ==
+                                                temp_est.getEstudantePair().first) {
+                                                for (auto &y: x->getEstudanteInscrito()) {
+                                                    if (y.getUCTurma().first ==
+                                                        p_temp10.getUCTurma().getUCTurma().first) {
+                                                        pair<string, string> temp_pair = make_pair(
+                                                                p_temp10.getUCTurma().getUCTurma().second,
+                                                                p_temp10.getUCTurma().getUCTurma().first);
+                                                        y.setUCTurma(temp_pair);
+                                                        gh.printPedido(p_temp10);
+                                                        cout << " Pedido aceite" << endl;
                                                     }
-                                                    break;
-
-                                                default:
-                                                    cout << " Opcao invalida" << endl;
-                                                    break;
+                                                }
                                             }
+                                        }
+                                        gh.printPedido(p_temp10);
+                                        cout << " Pedido processado com sucesso." << endl;
+                                        gh.wait();
 
-                                        } while (true);
-
-
-                                        cout << " Pedido processado com sucesso" << endl;
                                     }
-
                                 }
-                            }while(true);
+
+                            }while(flag2);
                             break;
 
                         default:

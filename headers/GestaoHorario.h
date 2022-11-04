@@ -44,6 +44,8 @@ public:
 
     static bool checkTurma(const string& x, const vector<UCTurma>& ucturma);
 
+    static bool checkEstudante(const string& x, const vector<Estudante>& estudantes);
+
 
 
     
