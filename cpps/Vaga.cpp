@@ -1,8 +1,6 @@
-//
-// Created by pland on 02/11/2022.
-//
 
 #include "../headers/Vaga.h"
+
 
 Vaga::Vaga() {}
 
@@ -26,9 +24,3 @@ void Vaga::setVagas(list<pair<string,int>> vagas) {
 void Vaga::setUC(string uc) {
     this->uc = uc;
 }
-
-
-
-//bool Vaga::operator<(const Vaga &v) const {
-//    return this->uc < v.uc;
-//}
