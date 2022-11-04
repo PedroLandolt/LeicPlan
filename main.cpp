@@ -99,6 +99,14 @@ int main() {
     //Ajustar vagas para o numero de vagas - numero de estudantes inscritos nas mesmas
     gh.ajustarVagas(v_vagas);
 
+
+    for(auto i : v_vagas){
+        cout << i.getUC() << endl;
+        for(const auto& j : i.getVagas()){
+            cout << j.first << " " << j.second << endl;
+        }
+    }
+
     //Varaveis para o menu
 
     string opcao, opcao1, opcao2, opcao3, opcao_menu;
@@ -366,11 +374,11 @@ int main() {
                     v_estudante_caso2.clear();
 
                     //listar estudantes inscritos na UC
-                    for(auto p : s_estudantes){
-                        auto j = p->getEstudanteInscrito();
+                    for(auto p : v_estudantes){
+                        auto j = p.getEstudanteInscrito();
                         for(auto i : j){
                             if(i.getUCTurma().first == uc_caso2){
-                                v_estudante_caso2.push_back(p->getEstudantePair());
+                                v_estudante_caso2.push_back(p.getEstudantePair());
                             }
                         }
                     }
@@ -552,8 +560,8 @@ int main() {
 
                 gh.clear();
                 cout << " Turma: ";
-                cout << endl;
                 cin >> opcao;
+                cout << endl;
 
                 do{
 
@@ -1210,10 +1218,10 @@ int main() {
 
                     //Lista as disciplinas do estudante
                     list<UCTurma> l_ucturma_caso6;
-                    for(auto p : s_estudantes){
-                        if(p->getEstudantePair().first == id_estudante_caso6){
-                            l_ucturma_caso6 = p->getEstudanteInscrito();
-                            nome_estudante_caso6 = p->getEstudantePair().second;
+                    for(auto p : v_estudantes){
+                        if(p.getEstudantePair().first == id_estudante_caso6){
+                            l_ucturma_caso6 = p.getEstudanteInscrito();
+                            nome_estudante_caso6 = p.getEstudantePair().second;
                         }
                     }
                     //Lista o horario do estudante
@@ -1591,10 +1599,10 @@ int main() {
 
 
                             //Complexidade O(n)
-                            for (auto p: s_estudantes) {
+                            for (auto p: v_estudantes) {
 
-                                if (p->getEstudantePair().first == id_estudante_caso10) {
-                                    e_caso10 = *p;
+                                if (p.getEstudantePair().first == id_estudante_caso10) {
+                                    e_caso10 = p;
                                 }
                             }
 
@@ -1602,12 +1610,6 @@ int main() {
                             gh.clear();
                             cout << " Introduza o codigo da UC a que quer mudar de turma: ";
                             cin >> opcao1;
-
-                            cout << " Introduza o codigo da turma em que se encontra: ";
-                            cin >> opcao2;
-
-                            cout << " Introduza o codigo da turma para qual quer mudar: ";
-                            cin >> opcao3;
 
                             //confirmar se a UC existe
                             while(!GestaoHorario::checkUC(opcao1, v_ucturma)) {
@@ -1618,19 +1620,25 @@ int main() {
                             }
                             uc_caso10 = opcao1;
 
+                            cout << " Introduza o codigo da turma em que se encontra: ";
+                            cin >> opcao2;
+
                             //Verificar se a turma em que se encontra existe.
                             while(!GestaoHorario::checkTurma(opcao2, v_ucturma)) {
                                 cout << endl;
-                                cout << " Turma invalida! Escolha uma turma valida: ";
+                                cout << " Turma invalida! Escolha uma turma atual valida: ";
                                 cin >> opcao2;
                                 cout << endl;
                             }
                             turma_caso_atual10 = opcao2;
 
+                            cout << " Introduza o codigo da turma para qual quer mudar: ";
+                            cin >> opcao3;
+
                             //Verificar se a turma para qual quer mudar existe.
                             while(!GestaoHorario::checkTurma(opcao3, v_ucturma)) {
                                 cout << endl;
-                                cout << " Turma invalida! Escolha uma turma valida: ";
+                                cout << " Turma invalida! Escolha uma turma para qual quer mudar valida: ";
                                 cin >> opcao3;
                                 cout << endl;
                             }
@@ -1838,12 +1846,34 @@ int main() {
                     int numero = 1;
                     //cout primeiro pedido de mudanca de turma
 
-                    cout << endl;
-                    cout << " 0 - Back" << endl;
-                    cout << " 1 - Processar Pedido" << endl;
+                    gh.clear();
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+                    cout << "||------------------- PROCESSAR PEDIDOS -----------------||" << endl;
+                    cout << "|| Escolha uma opcao:                                    ||" << endl;
+                    cout << "||_______________________________________________________||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   1 - Processar Pedido                                ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "||   0 - Back                                            ||" << endl;
+                    cout << "||                                                       ||" << endl;
+                    cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
                     cout << endl;
 
-                    cin >> choice12;
+                    /**
+                     * @brief Verificacao da opcao escolhida pelo utilizador.
+                     */
+                    cin >> opcao_menu;
+
+                    /**
+                    * @brief Verificacao da opcao escolhida pelo utilizador.
+                    */
+                    while(!GestaoHorario::checkInteiro(opcao_menu) || stoi(opcao_menu) < 0 || stoi(opcao_menu) > 1){
+                        cout << endl;
+                        cout << " Opcao invalida! Escolha uma opcao valida: ";
+                        cin >> opcao_menu;
+                    }
+                    choice12 = stoi(opcao_menu);
+                    cout << endl;
 
                     bool flag2 = true;
 
@@ -1870,7 +1900,7 @@ int main() {
                             do{
                                 gh.clear();
 
-                                if(gh.getPedidos().empty()){
+                                if(gh.getPedidos().empty() || contador == 0){
                                     cout << " Nao existem pedidos" << endl;
                                     gh.wait();
                                     flag2 = false;
@@ -1880,7 +1910,7 @@ int main() {
                                     gh.getPedidos().pop();
                                     gh.printPedido(p_temp10);
 
-                                    cout << " Pedido numero: " << numero << " | Faltam: " << contador << endl;
+                                    cout << " Pedido numero: " << numero << " | Faltam: " << contador - 1 << endl;
                                     contador--;
                                     numero++;
 
@@ -1888,24 +1918,23 @@ int main() {
 
 
                                     cout << "antes do if" << endl;
-                                    if (!GestaoHorario::sobreposicao(p_temp10, v_slots) || !GestaoHorario::equilibrio(p_temp10, v_vagas)) {
+                                    if (GestaoHorario::sobreposicao(p_temp10, v_slots) || !GestaoHorario::equilibrio(p_temp10, v_vagas)) {
+                                        gh.clear();
                                         gh.printPedido(p_temp10);
                                         cout << " Pedido nao processado devido a sobreposicao ou desequilibrio de Turmas." << endl;
                                         gh.wait();
                                     }
                                     else {
-                                        cout << "depois do if" << endl;
-                                        for (auto x: s_estudantes) {
-                                            if (x->getEstudantePair().first ==
-                                                temp_est.getEstudantePair().first) {
-                                                for (auto &y: x->getEstudanteInscrito()) {
-                                                    if (y.getUCTurma().first ==
-                                                        p_temp10.getUCTurma().getUCTurma().first) {
-                                                        pair<string, string> temp_pair = make_pair(
-                                                                p_temp10.getUCTurma().getUCTurma().second,
-                                                                p_temp10.getUCTurma().getUCTurma().first);
+                                        gh.clear();
+
+
+
+                                        for (auto& x: v_estudantes) {
+                                            if (x.getEstudantePair().first == p_temp10.getEstudante().getEstudantePair().first) {
+                                                for (auto &y: x.getEstudanteInscrito()) {
+                                                    if (y.getUCTurma().first == p_temp10.getUCTurma().getUCTurma().first) {
+                                                        pair<string, string> temp_pair = make_pair(p_temp10.getUCTurma().getUCTurma().first, p_temp10.getUCTurma().getUCTurma().second);
                                                         y.setUCTurma(temp_pair);
-                                                        gh.printPedido(p_temp10);
                                                         cout << " Pedido aceite" << endl;
                                                     }
                                                 }

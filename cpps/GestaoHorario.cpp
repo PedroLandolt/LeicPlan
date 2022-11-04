@@ -260,7 +260,7 @@ void GestaoHorario::wait() {
     do{ c = getchar(); }while ((c != '\n') && (c != EOF));
 }
 
-queue<Pedido> GestaoHorario::getPedidos() {
+queue<Pedido>& GestaoHorario::getPedidos() {
     return pedidos;
 }
 
@@ -277,7 +277,7 @@ void GestaoHorario::printPedido(Pedido prt_pedido) {
     cout << endl;
 }
 
-bool GestaoHorario::sobreposicao(Pedido pedido, vector<Slot> slots) {
+bool GestaoHorario::sobreposicao(Pedido pedido, const vector<Slot>& slots) {
 
     Estudante estudante = pedido.getEstudante();
 
@@ -309,7 +309,7 @@ bool GestaoHorario::sobreposicao(Pedido pedido, vector<Slot> slots) {
     Slot slot;
     slot.sortSlots(slots_temp);
 
-    for(int i = 0; i < slots_temp.size(); i++){
+    for(int i = 0; i < slots_temp.size()-1; i++){
         if(slots_temp[i].getDiaSemana() == slots_temp[i+1].getDiaSemana()){
             if(slots_temp[i].getHora().first + slots_temp[i].getHora().second > slots_temp[i+1].getHora().first && slots_temp[i].getHora().first < slots_temp[i+1].getHora().first){
                 if(slots_temp[i].getTipo() != "T" && slots_temp[i+1].getTipo() != "T"){
@@ -375,7 +375,7 @@ bool GestaoHorario::equilibrio(Pedido pedido, vector<Vaga> vagas) {
             }
         }
 
-        if(max - min >= 4){
+        if(max - min >= 4 && max <=30){
             return false;
         }
         return true;

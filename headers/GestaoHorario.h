@@ -25,14 +25,14 @@ public:
 
     void ajustarVagas(vector<Vaga> &vagas);
 
-    static bool sobreposicao(Pedido pedido , vector<Slot> slots);
+    static bool sobreposicao(Pedido pedido , const vector<Slot>& slots);
 
     static bool equilibrio(Pedido pedido , vector<Vaga> vagas);
 
     void clear();
     void wait();
 
-    queue<Pedido> getPedidos();
+    queue<Pedido>& getPedidos();
 
     void guardar(Pedido pedido);
 
