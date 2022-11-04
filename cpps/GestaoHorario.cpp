@@ -354,10 +354,46 @@ bool GestaoHorario::equilibrio(Pedido pedido, vector<Vaga> vagas) {
         return false;
 }
 
-void processarPedido(Pedido pedido) {
+bool GestaoHorario::checkInteiro(const string& x) {
+
+    for(char i : x){
+        if(!isdigit(i)){
+            return false;
+        }
+    }
+    return true;
+}
+
+bool GestaoHorario::checkUC(const string& x, const vector<UCTurma>& ucts) {
 
 
+    for(auto a : x){
+        if(a == ' '){
+            return false;
+        }
+    }
 
+    for(auto i : ucts){
+        if(i.getUCTurma().first == x){
+            return true;
+        }
+    }
+    return false;
+}
 
+bool GestaoHorario::checkTurma(const string& x, const vector<UCTurma>& ucts) {
+
+    for(auto a : x){
+        if(a == ' '){
+            return false;
+        }
+    }
+
+    for(auto i : ucts){
+        if(i.getUCTurma().second == x){
+            return true;
+        }
+    }
+    return false;
 }
 

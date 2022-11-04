@@ -16,6 +16,8 @@
 #include <list>
 #include <set>
 #include <map>
+#include <algorithm>
+#include <cctype>
 
 #include "conio.h"
 #include "windows.h"

@@ -25,11 +25,9 @@ public:
 
     void ajustarVagas(vector<Vaga> &vagas);
 
-    bool sobreposicao(Pedido pedido , vector<Slot> slots);
+    static bool sobreposicao(Pedido pedido , vector<Slot> slots);
 
-    bool equilibrio(Pedido pedido , vector<Vaga> vagas);
-
-    void processarPedido(Pedido pedido);
+    static bool equilibrio(Pedido pedido , vector<Vaga> vagas);
 
     void clear();
     void wait();
@@ -39,6 +37,12 @@ public:
     void guardar(Pedido pedido);
 
     void printPedido(Pedido prt_pedido);
+
+    static bool checkInteiro(const string& x);
+
+    static bool checkUC(const string& x, const vector<UCTurma>& ucturma);
+
+    static bool checkTurma(const string& x, const vector<UCTurma>& ucturma);
 
 
 
