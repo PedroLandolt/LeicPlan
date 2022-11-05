@@ -372,7 +372,7 @@ int main() {
                     if(v_estudante_caso2.empty()){
                         gh.clear();
                         cout << " Nao existem estudantes inscritos nesta UC" << endl;
-                        choice2 = 5;
+                        choice2 = 0;
                         gh.wait();
                     }
                     else {
@@ -563,7 +563,7 @@ int main() {
                     if(v_estudante_caso3.empty()){
                         gh.clear();
                         cout << " Nao existem estudantes inscritos na turma " << turma_caso3 << endl;
-                        choice3 = 5;
+                        choice3 = 0;
                         gh.wait();
                     }
 
@@ -749,7 +749,7 @@ int main() {
                     if(v_estudante_caso4.empty()){
                         gh.clear();
                         cout << " Nao existem estudantes inscritos nesta UC / Turma " << turma_caso3 << endl;
-                        choice4 = 7;
+                        choice4 = 0;
                         gh.wait();
                     }
 
@@ -958,7 +958,7 @@ int main() {
                     if(v_estudante_caso5.empty()){
                         gh.clear();
                         cout << " Nao existem estudantes inscritos neste Ano " << turma_caso3 << endl;
-                        choice5 = 5;
+                        choice5 = 0;
                         gh.wait();
                     }
 
