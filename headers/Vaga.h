@@ -27,37 +27,44 @@ class Vaga {
 
 public:
 
-    /** Default Constructor */
+    /** Default Constructor
+     * @brief Complexidade O(1)
+     */
     Vaga();
 
 
     /** Constructor
      * @param uc String com o código de uma UC
      * @param vagas Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     * @brief Complexidade O(1)
      */
     Vaga(string uc , list<pair<string, int>> vagas);
 
 
     /** Getter
      * @return Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     * @brief Complexidade O(1)
      */
     list<pair<string,int>>& getVagas();
 
 
     /** Getter
      * @return String com o código de uma UC
+     * @brief Complexidade O(1)
      */
     string getUC();
 
 
     /** Setter
      * @param vagas Lista de pares composto por uma string, codigo da turma, e um inteiro, numero de vagas dessa turma
+     * @brief Complexidade O(1)
      */
     void setVagas(list<pair<string,int>> vagas);
 
 
     /** Setter
      * @param uc String com o código de uma UC
+     * @brief Complexidade O(1)
      */
     void setUC(string uc);
 

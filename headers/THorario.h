@@ -8,44 +8,51 @@ class THorario {
 
 public:
 
-    /** Default Constructor */
+    /** Default Constructor
+     * @brief Complexidade O(1)
+     */
     THorario();
 
 
     /** Constructor
      * @param ucturma Objeto do tipo UCTurma
      * @param horaUCTurma Lista de objetos do tipo Slot
+     * @brief Complexidade O(1)
      */
     THorario(pair<string,string> ucturma, list<Slot> horaUCTurma);
 
 
     /** Setter
      * @param ucturma Objeto do tipo UCTurma
+     * @brief Complexidade O(1)
      */
     void setUcTurma(pair<string,string> ucturma);
 
 
     /** Setter
      * @param horaUCTurma Lista de objetos do tipo Slot
+     * @brief Complexidade O(1)
      */
     void setHoraUCTurma(list<Slot> horaUCTurma);
 
 
     /** Getter
      * @return Objeto do tipo UCTurma
+     * @brief Complexidade O(1)
      */
     pair<string,string> getUcTurma();
 
 
     /** Getter
      * @return Lista de objetos do tipo Slot
+     * @brief Complexidade O(1)
      */
     list<Slot> getHoraUCTurma();
 
 
     /** Operator Overload para comparar duas UC's
      * @param th Objeto do tipo THorario
-     * @return
+     * @brief Complexidade O(1)
      */
     bool operator<(const THorario &th) const;
 

@@ -1,10 +1,8 @@
 /*! \file */
 
 /**
- * Ficheiro onde estao implementados todos os diferentes menus e funçoes de print para visualizaçao das listagens e pedidos */
- /** | */  /** | */  /** | */
- /**   (a restante documentaçao do ficheiro main.cpp deve ser consultada no proprio ficheiro) */
-/** | */  /** | */  /** | */
+ * @brief Ficheiro onde estao implementados todos os diferentes menus e funçoes de print para visualizaçao das listagens e pedidos (a restante documentaçao do ficheiro main.cpp deve ser consultada no proprio ficheiro para mais facil visualizaçao)*/
+/** |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 
 #include "headers/GestaoHorario.h"
@@ -977,7 +975,7 @@ int main() {
                         cout << "||   2 - Ordenar estudantes por UP decrescente           ||" << endl;
                         cout << "||   3 - Ordenar estudantes por nome A-Z                 ||" << endl;
                         cout << "||   4 - Ordenar estudantes por nome Z-A                 ||" << endl;
-                        cout << "||   5 - Escolher outra Ano                              ||" << endl;
+                        cout << "||   5 - Escolher outro Ano                              ||" << endl;
                         cout << "||                                                       ||" << endl;
                         cout << "||   0 - Back                                            ||" << endl;
                         cout << "||                                                       ||" << endl;
